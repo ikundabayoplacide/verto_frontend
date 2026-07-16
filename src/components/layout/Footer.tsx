@@ -142,8 +142,7 @@ export function Footer() {
             />
           </Link>
           <p className="text-sm text-secondary-100 leading-relaxed max-w-xs">
-            Verto Holdings Ltd Construction and Consultancy Engineering. F18-3F
-            Silverback Mall, Sonatube, Kicukiro, KG 9 Ave, Nyarugenge, Kigali.
+            Verto Holdings Ltd — Financial &amp; Investment Advisory. KG 9 Ave, Nyarugenge, Kigali, Rwanda.
           </p>
           {/* Socials */}
           <ul className="flex items-center gap-3 mt-1" role="list">
@@ -283,7 +282,7 @@ export function Footer() {
           <div className="relative w-full h-40 border border-primary-700 overflow-hidden mt-2 rounded">
             <iframe
               title="Verto Holdings Location"
-              src="https://www.google.com/maps?q=-1.9678756,30.1025695&z=17&output=embed"
+              src="https://www.google.com/maps?q=KG+9+Ave,+Nyarugenge,+Kigali,+Rwanda&z=17&output=embed"
               width="100%"
               height="100%"
               className="absolute inset-0 w-full h-full"
