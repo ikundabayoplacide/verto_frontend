@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FiBell, FiMenu, FiX } from 'react-icons/fi';
-import { Outlet, useNavigate } from 'react-router-dom';import Logo from '../../assets/Logo.png';
+import { Outlet, useNavigate } from 'react-router-dom';
+import Logo from '../../assets/Logo.png';
 // import { DashboardSidebar } from './DashboardSidebar';
 
 export function DashboardLayout() {
@@ -59,7 +60,7 @@ export function DashboardLayout() {
 
           {/* Mobile logo */}
           <div className="md:hidden flex items-center">
-            <img src={Logo} alt="H&M Group" className="h-8 object-contain" />
+            <img src={Logo} alt="Verto Holdings" className="h-8 object-contain" />
           </div>
 
           {/* Page title slot — filled via context or leave empty */}

@@ -21,7 +21,7 @@ const COMPANY = [
 const SOCIALS = [
   {
     label: "Facebook",
-    href: "https://web.facebook.com/handmgrouprw/",
+    href: "#",
     icon: (
       <svg
         className="w-5 h-5"
@@ -35,7 +35,7 @@ const SOCIALS = [
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/handm_group/",
+    href: "#",
     icon: (
       <svg
         className="w-5 h-5"
@@ -49,7 +49,7 @@ const SOCIALS = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/handm-group-18072241b",
+    href: "#",
     icon: (
       <svg
         className="w-5 h-5"
@@ -63,7 +63,7 @@ const SOCIALS = [
   },
   {
     label: "X (Twitter)",
-    href: "https://x.com/HMGroup2898",
+    href: "#",
     icon: (
       <svg
         className="w-5 h-5"
@@ -128,21 +128,22 @@ export function Footer() {
   return (
     <footer className="relative bg-primary-900 border-t border-primary-700">
       <div className="w-full h-[18px] overflow-hidden relative">
-        <ImigongoPattern/>
+        <ImigongoPattern />
       </div>
       {/* Main grid */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-16 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand */}
         <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-1">
-          <Link to="/" aria-label="H&M Group — Home">
+          <Link to="/" aria-label="Verto Holdings — Home">
             <img
               src={Logo}
-              alt="H&M Group Ltd"
+              alt="Verto Holdings Ltd"
               className="h-12 w-auto object-contain"
             />
           </Link>
           <p className="text-sm text-secondary-100 leading-relaxed max-w-xs">
-            Verto Holdings Ltd  Construction and Consultancy Engineering. F18-3F Silverback Mall, Sonatube, Kicukiro, Kigali, Rwanda.
+            Verto Holdings Ltd Construction and Consultancy Engineering. F18-3F
+            Silverback Mall, Sonatube, Kicukiro, KG 9 Ave, Nyarugenge, Kigali.
           </p>
           {/* Socials */}
           <ul className="flex items-center gap-3 mt-1" role="list">
@@ -230,7 +231,7 @@ export function Footer() {
                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
-              <span>Kigali, Rwanda</span>
+              <span>KG 9 Ave, Nyarugenge, Kigali</span>
             </li>
             <li className="flex items-start gap-2.5 text-sm text-secondary-100">
               <svg
@@ -251,7 +252,7 @@ export function Footer() {
                 href="tel:+250782170000"
                 className="hover:text-primary-300 transition-colors duration-150"
               >
-                +250 782 170 000
+                +250 788 359 600
               </a>
             </li>
             <li className="flex items-start gap-2.5 text-sm text-secondary-100">
@@ -270,10 +271,10 @@ export function Footer() {
                 />
               </svg>
               <a
-                href="mailto:info@handmgroup.rw"
+                href="mailto:info@verto.rw"
                 className="hover:text-primary-300 transition-colors duration-150 break-all"
               >
-                info@handmgroup.rw
+                info@verto.rw
               </a>
             </li>
           </ul>
@@ -281,7 +282,7 @@ export function Footer() {
           {/* Map embed */}
           <div className="relative w-full h-40 border border-primary-700 overflow-hidden mt-2 rounded">
             <iframe
-              title="H&M Group Location"
+              title="Verto Holdings Location"
               src="https://www.google.com/maps?q=-1.9678756,30.1025695&z=17&output=embed"
               width="100%"
               height="100%"
@@ -297,14 +298,14 @@ export function Footer() {
       <div className="relative z-10 border-t border-primary-700">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col sm:flex-row items-center justify-center gap-2 text-xs text-secondary-100">
           <p>
-            © {year} H&amp;M Group Ltd. All rights reserved. Powered by{" "}
+            © {year} Verto Holdings Ltd. All rights reserved. Powered by{" "}
             <a
               href="https://santechinnovate.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary-700 transition-colors duration-150 font-bold"
             >
-            SANTECH
+              SANTECH
             </a>
           </p>
           {/* <div className="flex items-center gap-4">

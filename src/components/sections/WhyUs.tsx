@@ -23,11 +23,11 @@ export function WhyUs() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
         <div>
           <span className="flex items-center gap-3 mb-4">
-            <span aria-hidden="true" className="w-8 h-px bg-primary-500" />
-            <span className="text-xs font-bold text-primary-500 uppercase tracking-[0.2em]">Why Choose Us</span>
+            <span aria-hidden="true" className="w-8 h-px bg-accent-500" />
+            <span className="text-xs font-bold text-accent-600 uppercase tracking-[0.2em]">Why Choose Us</span>
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-primary-900 uppercase tracking-tight leading-[0.95] mb-14">
-            The Difference Is <span className="text-primary-500">In Our Expertise</span>
+            The Difference Is <span className="text-accent-500">In Our Expertise</span>
           </h2>
         </div>
 
@@ -42,8 +42,8 @@ export function WhyUs() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
           {REASONS.map((r) => (
-            <div key={r.num} className="flex flex-col gap-3 border-t-2 border-primary-500 pt-5">
-              <span className="text-xs font-black text-primary-400 tabular-nums">{r.num}</span>
+            <div key={r.num} className="flex flex-col gap-3 border-t-2 border-accent-500 pt-5">
+              <span className="text-xs font-black text-accent-500 tabular-nums">{r.num}</span>
               <h3 className="text-base font-black text-primary-900 uppercase tracking-wide">{r.title}</h3>
               <p className="text-sm text-secondary-500 leading-relaxed">{r.desc}</p>
             </div>

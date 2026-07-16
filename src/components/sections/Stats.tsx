@@ -35,7 +35,7 @@ function StatItem({ value, suffix, label, active }: (typeof STATS)[0] & { active
     <div className="flex flex-col items-center text-center px-4">
       <img src={IMG.iconCircle} alt="" className="w-12 h-12 mb-4 opacity-90" />
       <div className="text-5xl md:text-6xl font-black text-primary-900 tabular-nums">
-        {n.toLocaleString()}<span className="text-primary-500">{suffix}</span>
+        {n.toLocaleString()}<span className="text-accent-500">{suffix}</span>
       </div>
       <div className="mt-2 text-sm md:text-base text-secondary-500 max-w-[180px]">{label}</div>
     </div>
@@ -62,7 +62,7 @@ export function Stats() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
         <div className="grid lg:grid-cols-2 gap-10 items-end mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-primary-900 leading-tight uppercase tracking-tight">
-            Our Work <span className="text-primary-500">in Numbers</span>
+            Our Work <span className="text-accent-500">in Numbers</span>
           </h2>
           <div className="text-secondary-500">
             <p>Join the growing list of clients who trust Verto Holdings for world-class financial and investment advisory across Rwanda and East Africa.</p>

@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from '../../assets/Logo.png';
 import { ImigongoPattern } from '../common/ImigongoPattern';
+import { SERVICES_DATA } from '../../data/services';
 
 interface NavItem {
   label: string;
@@ -9,33 +10,21 @@ interface NavItem {
   children?: { label: string; href: string }[];
 }
 
-const FALLBACK_SERVICES = [
-  { label: 'Construction',            href: '/services/construction' },
-  { label: 'Renovation',              href: '/services/renovation' },
-  { label: 'Project Management',      href: '/services/project-management' },
-  { label: 'Engineering Consultancy', href: '/services/consultation' },
-];
+const NAV_SERVICES = SERVICES_DATA.map(s => ({ label: s.title, href: `/services/${s.slug}` }));
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Home',     href: '/' },
-  { label: 'Who we are',    href: '/about' },
-  {
-    label: 'Services',
-    href: '/services',
-    children: [],
-  },
-  { label: 'Projects',   href: '/projects' },
-  { label: 'Sustainability', href: '/sustainability' },
-  { label: 'Media',      href: '/media' },
-  { label: 'Contact',    href: '/contact' },
+  { label: 'Home',           href: '/' },
+  { label: 'Who we are',     href: '/about' },
+  { label: 'Services',       href: '/services', children: NAV_SERVICES },
+  { label: 'Sustainability', href: '/' },
+  { label: 'Media',          href: '/' },
+  { label: 'Contact',        href: '/' },
 ];
 
 export function Navbar() {
   const [scrolled,    setScrolled]    = useState(false);
   const [menuOpen,    setMenuOpen]    = useState(false);
   const [dropdownKey, setDropdownKey] = useState<string | null>(null);
-  const [services] = useState<{ name: string; slug: string; active: boolean }[]>([]);
-  const [servicesLoaded] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
 
@@ -79,13 +68,6 @@ export function Navbar() {
         : 'text-primary-900 hover:text-primary-700 after:w-0 hover:after:w-full',
     ].join(' ');
 
-  const serviceItems = useMemo(() => {
-    if (!servicesLoaded) return FALLBACK_SERVICES;
-    return services.length
-      ? services.map(s => ({ label: s.name, href: `/services/${s.slug}` }))
-      : FALLBACK_SERVICES;
-  }, [services, servicesLoaded]);
-
   return (
     <>
       {/* Dropdown backdrop — closes menu when clicking anywhere outside */}
@@ -111,8 +93,8 @@ export function Navbar() {
           className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between"
         >
           {/* Logo */}
-          <Link to="/" aria-label="H&M Group — Home" className="shrink-0 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">
-            <img src={Logo} alt="H&M Group Ltd" className="h-10 w-auto object-contain" />
+          <Link to="/" aria-label="Verto Holdings — Home" className="shrink-0 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">
+            <img src={Logo} alt="Verto Holdings Ltd" className="h-10 w-auto object-contain" />
           </Link>
 
           {/* Desktop links */}
@@ -133,10 +115,10 @@ export function Navbar() {
                     </svg>
                   </button>
                   {dropdownKey === item.label && (
-                    <ul role="menu" className="absolute top-full left-0 mt-2 w-52 rounded-xl bg-primary-800 border border-primary-700 shadow-xl overflow-hidden py-1 z-50"
+                    <ul role="menu" className="absolute top-full left-0 mt-2 w-60 rounded-xl bg-primary-800 border border-primary-700 shadow-xl overflow-hidden py-1 z-50"
                         onMouseEnter={() => setDropdownKey(item.label)}
                         onMouseLeave={() => setDropdownKey(null)}>
-                      {serviceItems.map((child) => (
+                      {item.children!.map((child) => (
                         <li key={child.href} role="none">
                           <NavLink to={child.href} role="menuitem" className={({ isActive }) => ['block px-4 py-2.5 text-sm transition-colors duration-100', isActive ? 'bg-primary-700 text-primary-300 font-medium' : 'text-secondary-100 hover:bg-primary-700/60 hover:text-secondary-100'].join(' ')}>
                             {child.label}
@@ -201,7 +183,7 @@ export function Navbar() {
         {/* Sidebar header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-primary-700">
           <Link to="/" onClick={() => setMenuOpen(false)}>
-            <img src={Logo} alt="H&M Group Ltd" className="h-9 w-auto object-contain" />
+            <img src={Logo} alt="Verto Holdings Ltd" className="h-9 w-auto object-contain" />
           </Link>
           <button
             type="button"
@@ -238,7 +220,7 @@ export function Navbar() {
                   </button>
                   {dropdownKey === item.label && (
                     <ul className="mt-1 ml-3 border-l border-primary-700 pl-3 flex flex-col gap-0.5">
-                      {serviceItems.map((child) => (
+                      {item.children!.map((child) => (
                         <li key={child.href}>
                           <NavLink
                             to={child.href}
@@ -274,7 +256,7 @@ export function Navbar() {
           >
             Get a Free Quote
           </Link>
-          <p className="text-xs text-secondary-500 text-center mt-3">+250 782 170 000</p>
+          <p className="text-xs text-secondary-500 text-center mt-3">+250 788 359 600</p>
         </div>
       </aside>
     </>

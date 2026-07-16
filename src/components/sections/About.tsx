@@ -30,7 +30,7 @@ export function About() {
           </p>
           <Link
             to="/about"
-            className="inline-flex items-center gap-2 rounded-full border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white transition px-5 py-2.5 text-sm font-bold uppercase tracking-widest"
+            className="inline-flex items-center gap-2 rounded-full border border-accent-500 text-accent-600 hover:bg-accent-500 hover:text-white transition px-5 py-2.5 text-sm font-bold uppercase tracking-widest"
           >
             Our Story
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -45,11 +45,11 @@ export function About() {
           Why Choose Verto Holdings
         </h3>
         <div className="flex flex-wrap gap-4">
-          <a href="#services" className="inline-flex items-center gap-2 rounded-full border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white transition px-5 py-2.5 text-sm font-medium">
+          <a href="#services" className="inline-flex items-center gap-2 rounded-full border border-accent-500 text-accent-600 hover:bg-accent-500 hover:text-white transition px-5 py-2.5 text-sm font-medium">
             Integrity &amp; Professionalism
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
-          <a href="#projects" className="inline-flex items-center gap-2 rounded-full border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white transition px-5 py-2.5 text-sm font-medium">
+          <a href="#projects" className="inline-flex items-center gap-2 rounded-full border border-accent-500 text-accent-600 hover:bg-accent-500 hover:text-white transition px-5 py-2.5 text-sm font-medium">
             Proven Track Record
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>

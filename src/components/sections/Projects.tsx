@@ -5,10 +5,10 @@ const IMG = {
 };
 
 const PROJECTS = [
-  { id: '1', category: 'Commercial',  year: '2024', title: 'Westlands Office Complex',    location: 'Kigali, Rwanda',   img: '/images/City.jpg' },
-  { id: '2', category: 'Residential', year: '2023', title: 'Karen Residential Villa',     location: 'Kigali, Rwanda',   img: '/images/City.jpeg' },
-  { id: '3', category: 'Renovation',  year: '2023', title: 'Parklands Office Renovation', location: 'Kigali, Rwanda',   img: '/images/office.jpeg' },
-  { id: '4', category: 'Industrial',  year: '2022', title: 'Kigali Industrial Park',      location: 'Kigali, Rwanda',   img: '/images/industries.jpeg' },
+  { id: '1', category: 'Commercial',  year: '2024', title: 'Westlands Office Complex',    location: 'KG 9 Ave, Nyarugenge, Kigali',   img: '/images/City.jpg' },
+  { id: '2', category: 'Residential', year: '2023', title: 'Karen Residential Villa',     location: 'KG 9 Ave, Nyarugenge, Kigali',   img: '/images/City.jpeg' },
+  { id: '3', category: 'Renovation',  year: '2023', title: 'Parklands Office Renovation', location: 'KG 9 Ave, Nyarugenge, Kigali',   img: '/images/office.jpeg' },
+  { id: '4', category: 'Industrial',  year: '2022', title: 'Kigali Industrial Park',      location: 'KG 9 Ave, Nyarugenge, Kigali',   img: '/images/industries.jpeg' },
 ];
 
 export function Projects() {

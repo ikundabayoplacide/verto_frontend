@@ -1,0 +1,98 @@
+export const SERVICES_DATA = [
+  {
+    slug: 'capital-raising',
+    title: 'Capital Raising',
+    short: 'Connecting businesses with the right investors and funding instruments to fuel sustainable growth.',
+    img: '/images/highlight-financial-services.jpg',
+    description: [
+      'Verto Holdings provides end-to-end capital raising advisory, helping businesses identify, structure, and secure the right funding — whether through equity, debt, or hybrid instruments.',
+      'We leverage our extensive network of institutional investors, development finance institutions (DFIs), and private equity firms across East Africa and beyond to match your capital needs with the right partners.',
+      'Our team guides you through every stage: investment thesis development, financial modeling, investor deck preparation, due diligence support, and deal closing.',
+    ],
+    highlights: ['Equity & Debt Structuring', 'Investor Roadshows', 'DFI & Impact Investor Access', 'Deal Closing Support'],
+  },
+  {
+    slug: 'business-plan',
+    title: 'Business Plan Development',
+    short: 'Crafting compelling, investor-ready business plans that open doors to funding and strategic partnerships.',
+    img: '/images/bd.jpeg',
+    description: [
+      'A well-structured business plan is the foundation of any successful fundraising or expansion effort. Our team develops comprehensive, data-driven business plans tailored to your industry, audience, and objectives.',
+      'We combine financial modeling, market research, competitive analysis, and strategic narrative to produce documents that resonate with investors, lenders, and development partners.',
+      'Whether you are a startup seeking seed funding or an established enterprise planning expansion, we deliver plans that are both analytically rigorous and compellingly presented.',
+    ],
+    highlights: ['Financial Projections', 'Market & Competitive Analysis', 'Strategic Narrative', 'Investor-Ready Formatting'],
+  },
+  {
+    slug: 'asset-management',
+    title: 'Asset Management',
+    short: 'Optimizing portfolio performance through disciplined investment strategies and active asset oversight.',
+    img: '/images/highlight-protection.jpg',
+    description: [
+      'Our asset management advisory services help institutions and high-net-worth individuals optimize the performance of their investment portfolios across multiple asset classes.',
+      'We provide strategic guidance on portfolio construction, risk management, asset allocation, and performance monitoring — ensuring your assets work harder and smarter.',
+      'From fixed income and equities to real assets and alternative investments, we bring deep market knowledge and analytical rigor to every mandate.',
+    ],
+    highlights: ['Portfolio Construction', 'Risk Management', 'Multi-Asset Allocation', 'Performance Monitoring'],
+  },
+  {
+    slug: 'corporate-finance',
+    title: 'Corporate Finance',
+    short: 'Strategic financial advisory for mergers, acquisitions, restructuring, and value creation.',
+    img: '/images/hero-office.jpg',
+    description: [
+      'Verto Holdings delivers sophisticated corporate finance advisory to help businesses navigate complex transactions, optimize their capital structure, and maximize shareholder value.',
+      'Our services span mergers and acquisitions (M&A), corporate restructuring, valuation, financial due diligence, and transaction advisory — supported by a team with deep regional and international experience.',
+      'We act as trusted advisors throughout the transaction lifecycle, from initial strategy through execution and post-deal integration.',
+    ],
+    highlights: ['M&A Advisory', 'Corporate Restructuring', 'Valuation Services', 'Financial Due Diligence'],
+  },
+  {
+    slug: 'private-equity',
+    title: 'Private Equity',
+    short: 'Unlocking growth capital and strategic value through private equity structuring and advisory.',
+    img: '/images/City.jpg',
+    description: [
+      'We provide specialized private equity advisory to both investors seeking deployment opportunities and companies seeking growth capital in the East African market.',
+      'Our services include deal sourcing, investment structuring, fund formation advisory, portfolio company support, and exit strategy planning.',
+      'With deep knowledge of the regional private equity landscape, we bridge the gap between capital and opportunity — creating value for all stakeholders.',
+    ],
+    highlights: ['Deal Sourcing', 'Investment Structuring', 'Fund Formation', 'Exit Strategy Planning'],
+  },
+  {
+    slug: 'esg-sustainable-finance',
+    title: 'ESG & Sustainable Finance',
+    short: 'Embedding environmental, social, and governance principles to unlock green capital and long-term resilience.',
+    img: '/images/home.jpg',
+    description: [
+      'As Rwanda and East Africa accelerate their sustainable development agendas, ESG compliance and sustainable finance have become critical to accessing international capital markets and development funding.',
+      'Verto Holdings helps organizations develop robust ESG frameworks, prepare sustainability reports, and structure green bonds, social bonds, and sustainability-linked instruments.',
+      'We have successfully facilitated green finance transactions with FONERWA and other impact-focused institutions, and we bring that expertise to every client engagement.',
+    ],
+    highlights: ['ESG Framework Development', 'Green Bond Structuring', 'Impact Reporting', 'FONERWA & DFI Access'],
+  },
+  {
+    slug: 'capital-market',
+    title: 'Capital Market Development',
+    short: 'Building deeper, more liquid capital markets through listing advisory, sponsor services, and market education.',
+    img: '/images/cpm.jpeg',
+    description: [
+      'Verto Holdings is a licensed sponsor in the Rwandan capital market, providing comprehensive listing advisory and market development services to companies seeking to access the Rwanda Stock Exchange (RSE).',
+      'We offer SME-focused listing advisory, Listing Readiness programs, cross-border listing support across the EAC, and post-listing compliance and investor relations advisory.',
+      'Our digital listing platform streamlines the process, reducing administrative burden and improving efficiency for issuers at every stage of their capital market journey.',
+    ],
+    highlights: ['RSE Listing Advisory', 'SME Listing Readiness', 'Cross-Border EAC Listings', 'Post-Listing Compliance'],
+  },
+  {
+    slug: 'commodities-trading',
+    title: 'Commodities Trading',
+    short: 'Strategic advisory and facilitation for commodities trading, with a focus on Rwanda\'s key export sectors.',
+    img: '/images/com.jpeg',
+    description: [
+      'Rwanda\'s commodities sector — particularly coffee, tea, and minerals — represents significant investment and trading opportunities. Verto Holdings provides advisory services to help businesses navigate this complex landscape.',
+      'We support commodities traders, exporters, and investors with market intelligence, trade finance structuring, risk management strategies, and connections to international buyers and financiers.',
+      'Our work with CEPAR and the USAID Feed the Future initiative gives us unique insight into Rwanda\'s coffee export sector and the broader East African commodities market.',
+    ],
+    highlights: ['Trade Finance Structuring', 'Market Intelligence', 'Export Advisory', 'Risk Management'],
+  },
+];

@@ -1,20 +1,20 @@
 import {
-  FiAward,
-  FiBarChart2,
-  FiBell,
-  FiBriefcase,
-  FiChevronLeft,
-  FiChevronRight,
-  FiFileText,
-  FiFolder,
-  FiHome,
-  FiImage,
-  FiLogOut,
-  FiMessageSquare,
-  // FiPieChart,
-  FiSettings,
-  FiStar,
-  FiUsers
+    FiAward,
+    FiBarChart2,
+    FiBell,
+    FiBriefcase,
+    FiChevronLeft,
+    FiChevronRight,
+    FiFileText,
+    FiFolder,
+    FiHome,
+    FiImage,
+    FiLogOut,
+    FiMessageSquare,
+    // FiPieChart,
+    FiSettings,
+    FiStar,
+    FiUsers
 } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/Logo.png';
@@ -87,7 +87,7 @@ export function DashboardSidebar({ collapsed, onToggle, onLogout }: DashboardSid
       ].join(' ')}>
         <img
           src={Logo}
-          alt="H&M Group"
+          alt="Verto Holdings"
           className={['object-contain transition-all duration-300', collapsed ? 'h-7' : 'h-8'].join(' ')}
         />
         {!collapsed && (

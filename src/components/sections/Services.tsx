@@ -1,20 +1,10 @@
 import { Link } from 'react-router-dom';
+import { SERVICES_DATA } from '../../data/services';
 
 const IMG = {
   footerBg:   'https://rcb.rw/svgs/footer-bg.svg',
   onImgShape: 'https://rcb.rw/svgs/on_image_shape.svg',
 };
-
-const SERVICES = [
-  { title: 'Capital Raising',           href: '/services/capital-raising',          img: '/images/highlight-financial-services.jpg' },
-  { title: 'Business Plan Development', href: '/services/business-plan',            img: '/images/bd.jpeg' },
-  { title: 'Asset Management',          href: '/services/asset-management',         img: '/images/highlight-protection.jpg' },
-  { title: 'Corporate Finance',         href: '/services/corporate-finance',        img: '/images/hero-office.jpg' },
-  { title: 'Private Equity',            href: '/services/private-equity',           img: '/images/City.jpg' },
-  { title: 'ESG & Sustainable Finance', href: '/services/esg-sustainable-finance',  img: '/images/home.jpg' },
-  { title: 'Capital Market Development',href: '/services/capital-market',           img: '/images/cpm.jpeg' },
-  { title: 'Commodities Trading',       href: '/services/commodities-trading',      img: '/images/com.jpeg' },
-];
 
 export function Services() {
   return (
@@ -24,8 +14,8 @@ export function Services() {
         <div className="grid lg:grid-cols-2 gap-10 items-end mb-14">
           <div>
             <span className="flex items-center gap-3 mb-4">
-              <span aria-hidden="true" className="w-8 h-px bg-primary-500" />
-              <span className="text-xs font-bold text-primary-500 uppercase tracking-[0.2em]">What We Do</span>
+              <span aria-hidden="true" className="w-8 h-px bg-accent-500" />
+              <span className="text-xs font-bold text-accent-600 uppercase tracking-[0.2em]">What We Do</span>
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-primary-900 uppercase tracking-tight leading-[0.95]">
               Our Services
@@ -37,8 +27,8 @@ export function Services() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {SERVICES.map((s) => (
-            <Link key={s.title} to={s.href} className="group relative overflow-hidden rounded-2xl aspect-[3/4] block">
+          {SERVICES_DATA.map((s) => (
+            <Link key={s.slug} to={`/services/${s.slug}`} className="group relative overflow-hidden rounded-2xl aspect-[3/4] block">
               <img src={s.img} alt={s.title} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-900/85 via-primary-900/20 to-transparent" />
               <img src={IMG.onImgShape} alt="" className="absolute bottom-4 left-4 w-10 opacity-90" />
@@ -52,7 +42,7 @@ export function Services() {
         <div className="mt-12 flex justify-center">
           <Link
             to="/services"
-            className="inline-flex items-center gap-2 rounded-full bg-primary-500 hover:bg-primary-400 text-white px-7 py-3 font-bold text-sm uppercase tracking-widest transition"
+            className="inline-flex items-center gap-2 rounded-full bg-accent-500 hover:bg-accent-400 text-white px-7 py-3 font-bold text-sm uppercase tracking-widest transition"
           >
             View All Services
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">

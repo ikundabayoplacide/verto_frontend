@@ -28,7 +28,7 @@ export function ImigongoPattern({ position = 'top', height = 18, fillHeight = fa
           <polyline
             points="0,17 10,9 20,17 30,9 40,17 50,9"
             fill="none"
-            stroke="#3285ec"
+            stroke="#369b36"
             strokeWidth="4"
             strokeLinejoin="miter"
           />

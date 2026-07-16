@@ -1,4 +1,9 @@
 export { About } from './About';
+export { AboutHero } from './AboutHero';
+export { AboutMission } from './AboutMission';
+export { AboutValues } from './AboutValues';
+export { AboutTimeline } from './AboutTimeline';
+export { AboutTeam } from './AboutTeam';
 export { Contact } from './Contact';
 export { CTA } from './CTA';
 export { Hero } from './Hero';

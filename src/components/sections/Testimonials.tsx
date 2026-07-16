@@ -61,14 +61,14 @@ export function Testimonials() {
             <div className="flex items-center gap-4 mt-8">
               <button type="button" aria-label="Previous"
                 onClick={() => { advance(-1); startTimer(); }}
-                className="w-11 h-11 border border-secondary-300 flex items-center justify-center text-secondary-500 hover:border-primary-500 hover:text-primary-500 rounded-full transition">
+                className="w-11 h-11 border border-secondary-300 flex items-center justify-center text-secondary-500 hover:border-accent-500 hover:text-accent-500 rounded-full transition">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
               <button type="button" aria-label="Next"
                 onClick={() => { advance(1); startTimer(); }}
-                className="w-11 h-11 bg-primary-500 flex items-center justify-center text-white hover:bg-primary-400 rounded-full transition">
+                className="w-11 h-11 bg-accent-500 flex items-center justify-center text-white hover:bg-accent-400 rounded-full transition">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
@@ -76,7 +76,7 @@ export function Testimonials() {
               <div className="flex gap-2 ml-2">
                 {TESTIMONIALS.map((_, i) => (
                   <button key={i} type="button" onClick={() => { setCurrent(i); startTimer(); }}
-                    className={['h-0.5 transition-all duration-300', i === current ? 'w-8 bg-primary-500' : 'w-4 bg-secondary-300'].join(' ')} />
+                    className={['h-0.5 transition-all duration-300', i === current ? 'w-8 bg-accent-500' : 'w-4 bg-secondary-300'].join(' ')} />
                 ))}
               </div>
             </div>
