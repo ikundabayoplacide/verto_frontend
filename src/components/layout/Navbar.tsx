@@ -34,8 +34,8 @@ export function Navbar() {
   const [scrolled,    setScrolled]    = useState(false);
   const [menuOpen,    setMenuOpen]    = useState(false);
   const [dropdownKey, setDropdownKey] = useState<string | null>(null);
-  const [services, setServices] = useState<{ name: string; slug: string; active: boolean }[]>([]);
-  const [servicesLoaded, setServicesLoaded] = useState(false);
+  const [services] = useState<{ name: string; slug: string; active: boolean }[]>([]);
+  const [servicesLoaded] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
 
