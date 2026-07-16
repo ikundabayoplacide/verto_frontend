@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  /* ── Breakpoints ── */
+  --breakpoint-xxs: 320px;
+  --breakpoint-xs:  480px;
+  --breakpoint-sm:  640px;
+  --breakpoint-md:  768px;
+  --breakpoint-lg:  1024px;
+  --breakpoint-xl:  1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
+  --breakpoint-4xl: 2560px;
+
+  /* ── Primary — Slate Blue-Violet (from logo square frame & "VERTO HOLDINGS" text) ── */
+  --color-primary-50:  oklch(97%  0.012 262);   /* near-white blue-violet tint   */
+  --color-primary-100: oklch(93%  0.028 262);   /* very light slate blue         */
+  --color-primary-200: oklch(85%  0.060 262);   /* light slate blue              */
+  --color-primary-300: oklch(74%  0.105 262);   /* soft slate blue               */
+  --color-primary-400: oklch(62%  0.155 262);   /* medium slate blue             */
+  --color-primary-500: oklch(50%  0.185 262);   /* core slate blue  (#4A5BA0 ish) */
+  --color-primary-600: oklch(42%  0.170 262);   /* deep slate blue               */
+  --color-primary-700: oklch(34%  0.148 262);   /* darker slate blue             */
+  --color-primary-800: oklch(26%  0.118 262);   /* very dark slate blue          */
+  --color-primary-900: oklch(18%  0.085 262);   /* near-black slate blue         */
+
+  /* ── Secondary — Neutral Gray (UI text, borders, surfaces) ── */
+  --color-secondary-50:  oklch(97%  0.003 262);  /* off-white / wall background   */
+  --color-secondary-100: oklch(92%  0.005 262);  /* lightest gray                 */
+  --color-secondary-200: oklch(84%  0.007 262);  /* light gray                    */
+  --color-secondary-300: oklch(74%  0.010 262);  /* soft gray                     */
+  --color-secondary-400: oklch(63%  0.012 262);  /* medium-light gray             */
+  --color-secondary-500: oklch(52%  0.014 262);  /* core medium gray              */
+  --color-secondary-600: oklch(42%  0.012 262);  /* dark gray                     */
+  --color-secondary-700: oklch(33%  0.010 262);  /* deeper gray                   */
+  --color-secondary-800: oklch(23%  0.007 262);  /* near-black gray               */
+  --color-secondary-900: oklch(14%  0.005 262);  /* almost black                  */
+
+  /* ── Accent — Vivid Green (from logo swoosh stripes & italic tagline) ── */
+  --color-accent-50:  oklch(97%  0.018 145);   /* near-white green tint          */
+  --color-accent-100: oklch(93%  0.045 145);   /* very light green               */
+  --color-accent-200: oklch(86%  0.090 145);   /* light green                    */
+  --color-accent-300: oklch(76%  0.145 145);   /* soft green                     */
+  --color-accent-400: oklch(64%  0.190 145);   /* medium green                   */
+  --color-accent-500: oklch(52%  0.210 145);   /* core green  (#2E8B2E ish)       */
+  --color-accent-600: oklch(44%  0.195 145);   /* deep green                     */
+  --color-accent-700: oklch(36%  0.168 145);   /* darker green                   */
+  --color-accent-800: oklch(28%  0.132 145);   /* very dark green                */
+  --color-accent-900: oklch(20%  0.090 145);   /* near-black green               */
+
+  /* ── Custom — Blue-violet-gray utility scale ── */
+  --color-custom-50:  oklch(0.97 0.034 262);
+  --color-custom-100: oklch(0.93 0.034 262);
+  --color-custom-200: oklch(0.88 0.034 262);
+  --color-custom-300: oklch(0.82 0.034 262);
+  --color-custom-400: oklch(0.76 0.034 262);
+  --color-custom-500: oklch(0.70 0.034 262);   /* base surface */
+  --color-custom-600: oklch(0.64 0.034 262);
+  --color-custom-700: oklch(0.58 0.034 262);
+  --color-custom-800: oklch(0.52 0.034 262);
+  --color-custom-900: oklch(0.46 0.034 262);
+
+  /* ── Style — Surface / card tokens ── */
+  --color-style-500: oklch(0.9774 0.0042 262);
+  --color-style-600: oklch(96.648% 0.004545 262);
+
+  /* ── Error — Red scale ── */
+  --color-error-50:  oklch(97%  0.015  20);   /* blush                          */
+  --color-error-100: oklch(93%  0.040  22);
+  --color-error-200: oklch(86%  0.080  23);
+  --color-error-300: oklch(75%  0.140  24);
+  --color-error-400: oklch(63%  0.200  25);
+  --color-error-500: oklch(52%  0.240  26);   /* core red  (#D32F2F ish)         */
+  --color-error-600: oklch(44%  0.220  26);
+  --color-error-700: oklch(36%  0.190  26);
+  --color-error-800: oklch(28%  0.150  26);
+  --color-error-900: oklch(20%  0.100  26);
+
+  /* ── Success — Green scale ── */
+  --color-success-50:  oklch(97%  0.015 145);  /* mint                           */
+  --color-success-100: oklch(93%  0.040 145);
+  --color-success-200: oklch(87%  0.080 145);
+  --color-success-300: oklch(77%  0.130 145);
+  --color-success-400: oklch(65%  0.175 145);
+  --color-success-500: oklch(53%  0.200 145);  /* core green  (#2E7D32 ish)       */
+  --color-success-600: oklch(44%  0.185 145);
+  --color-success-700: oklch(36%  0.160 145);
+  --color-success-800: oklch(28%  0.125 145);
+  --color-success-900: oklch(20%  0.085 145);
+}
+
+/* ── Scrollbar hide utility ── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Base typography & reset ── */
+html,
+body,
+#root,
+button,
+input,
+select,
+textarea {
+  font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #ffffff;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  /* Neutralise Google Translate body offset */
+  top: 0 !important;
+  position: static !important;
+}
+
+body::-webkit-scrollbar         { width: 0; }
+body::-webkit-scrollbar-track   { background: transparent; }
+body::-webkit-scrollbar-thumb   { background: transparent; }
+
+/* ── Scroll Reveal ── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-reveal].reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal="left"]  { transform: translateX(-40px); }
+[data-reveal="right"] { transform: translateX(40px); }
+[data-reveal="left"].reveal-visible,
+[data-reveal="right"].reveal-visible { transform: translateX(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .skeleton-pulse { animation: none; }
+}
+
+/* ── Keyframes ── */
+@keyframes whatsapp-pulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(37, 211, 102, 0.7); }
+  50%       { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);   }
+}
+
+@keyframes whatsapp-bounce {
+  0%, 100% { transform: translateY(0);  }
+  30%       { transform: translateY(-8px); }
+  60%       { transform: translateY(-4px); }
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%);  }
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes hero-slider {
+  0%,  20% { transform: translateX(0);      }
+  25%, 45% { transform: translateX(-100%);  }
+  50%, 70% { transform: translateX(-200%);  }
+  75%, 95% { transform: translateX(-300%);  }
+  100%     { transform: translateX(0);      }
+}
+
+@keyframes scroll-left {
+  0%   { transform: translateX(0);    }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes about-card-reveal {
+  0%   { opacity: 0; transform: translateX(72px); }
+  100% { opacity: 1; transform: translateX(0);    }
+}
+
+@keyframes slide-in-right {
+  0%   { opacity: 0; transform: translateX(50px); }
+  100% { opacity: 1; transform: translateX(0);    }
+}
+
+/* ── Animation utility classes ── */
+.whatsapp-pulse       { animation: whatsapp-pulse 2s ease-in-out infinite; }
+.whatsapp-bounce:hover { animation: whatsapp-bounce 0.6s ease; }
+
+.hero-slider { animation: hero-slider 20s ease-in-out infinite; }
+
+.scroll-container { display: flex; overflow: hidden; width: 100%; }
+.scroll-content {
+  display: flex;
+  animation: scroll-left 30s linear infinite;
+  gap: 2rem;
+}
+.scroll-content:hover { animation-play-state: paused; }
+
+.about-card-reveal         { opacity: 0; transform: translateX(72px); }
+.about-card-reveal-visible {
+  animation: about-card-reveal 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.slide-in-item         { opacity: 0; transform: translateX(50px); }
+.slide-in-item-visible {
+  animation: slide-in-right 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slider                { animation: none; }
+  .scroll-content             { animation: none; }
+  .about-card-reveal          { opacity: 1; transform: none; }
+  .about-card-reveal-visible  { animation: none; }
+  .slide-in-item              { opacity: 1; transform: none; }
+  .slide-in-item-visible      { animation: none; }
+}
+
+/* ── Google Translate cleanup ── */
+.goog-te-spinner-pos,
+.goog-te-spinner-animation,
+div[style*="background-color: rgb(255, 255, 255)"][style*="border"],
+div[style*="background-color: white"][style*="border"],
+div[style*="box-shadow"][style*="rgba"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body > div[style*="position: absolute"][style*="z-index"],
+body > div[style*="position: fixed"][style*="z-index"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+*[onmouseover*="goog"],
+*[onmouseout*="goog"] { pointer-events: none !important; }
+
+body > .skiptranslate,
+.goog-te-gadget { display: none !important; }
+
+.skiptranslate,
+.skiptranslate * { box-shadow: none !important; text-shadow: none !important; }
+
+.goog-text-highlight,
+font[style*="background"],
+span[style*="background-color"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+font,
+.translated-ltr,
+.translated-rtl { text-shadow: none !important; }
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+
+body > iframe[id^="goog"],
+body > iframe[src*="translate.google"] {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+}
