@@ -16,7 +16,7 @@ export function About() {
     <section id="about" className="relative bg-secondary-50 overflow-hidden">
       <div className=" mx-auto lg:px-10 grid lg:grid-cols-2 items-center relative">
         <div className="hidden md:flex justify-center">
-          <DotLottieReact src="/src/assets/Team.lottie" loop autoplay style={{ width: '1000px', height: '600px' }} />
+          <DotLottieReact src="/Team.lottie" loop autoplay style={{ width: '1000px', height: '600px' }} />
         </div>
         <div className="space-y-5 text-secondary-600 leading-relaxed">
           <h2 className="text-3xl md:text-4xl font-black text-primary-900 uppercase tracking-tight">
