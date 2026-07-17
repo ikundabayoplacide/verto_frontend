@@ -11,7 +11,7 @@ export function Services() {
     <section id="services" className="relative bg-white overflow-hidden">
       <img src={IMG.footerBg} alt="" className="absolute top-0 inset-x-0 w-full opacity-60 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
-        <div className="grid lg:grid-cols-2 gap-10 items-end mb-14">
+        <div data-reveal className="grid lg:grid-cols-2 gap-10 items-end mb-14">
           <div>
             <span className="flex items-center gap-3 mb-4">
               <span aria-hidden="true" className="w-8 h-px bg-accent-500" />
@@ -26,7 +26,7 @@ export function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div data-reveal className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {SERVICES_DATA.slice(0, 4).map((s) => (
             <Link key={s.slug} to={`/services/${s.slug}`} className="group relative overflow-hidden aspect-[3/4] block">
               <img src={s.img} alt={s.title} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
@@ -39,7 +39,7 @@ export function Services() {
           ))}
         </div>
 
-        <div className="mt-12 flex justify-center">
+        <div data-reveal className="mt-12 flex justify-center">
           <Link
             to="/services"
             className="inline-flex items-center gap-2 rounded-full bg-accent-500 hover:bg-accent-400 text-white px-7 py-3 font-bold text-sm uppercase tracking-widest transition"

@@ -1,7 +1,8 @@
 const PARTNERS = [
-  { name: 'Rwanda Development Board', logo: '/images/RDB-1-765x768.png' },
-  { name: 'University of Lay Adventists of Kigali', logo: '/images/LOGO-ULK.png' },
   { name: 'Capital Market Authority', logo: '/images/cma.jpg' },
+  { name: 'Rwanda Development Board', logo: '/images/rdb.jpeg' },
+  { name: 'University of Lay Adventists of Kigali', logo: '/images/LOGO-ULK.png' },
+
 ];
 
 export function AboutPartners() {
@@ -26,12 +27,12 @@ export function AboutPartners() {
           {PARTNERS.map((p) => (
             <div
               key={p.name}
-              className="flex items-center justify-center p-8 rounded-2xl border border-secondary-200 bg-secondary-50 hover:border-accent-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+              className="flex items-center justify-center p-3 rounded-2xl border border-secondary-200 bg-secondary-50 hover:border-accent-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
             >
               <img
                 src={p.logo}
                 alt={p.name}
-                className="max-h-16 max-w-full object-contain hover:grayscale-0 transition-all duration-300"
+                className="max-h-32 max-w-full object-contain hover:grayscale-0 transition-all duration-300"
               />
             </div>
           ))}

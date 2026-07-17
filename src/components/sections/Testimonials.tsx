@@ -35,19 +35,19 @@ export function Testimonials() {
     <section id="testimonials" className="relative py-10 bg-white overflow-hidden">
       <img src={IMG.bigCircle} alt="" className="absolute -right-40 top-1/2 -translate-y-1/2 w-[720px] opacity-40 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
-        <h2 className="text-4xl md:text-5xl font-black text-primary-900 uppercase tracking-tight mb-16">
+        <h2 data-reveal className="text-4xl md:text-5xl font-black text-primary-900 uppercase tracking-tight mb-16">
           Testimonials
         </h2>
         <div className="grid lg:grid-cols-2 gap-14 items-center">
           {/* Portrait */}
-          <div className="relative flex justify-center">
+          <div data-reveal="left" className="relative flex justify-center">
             <div className="relative rounded-full overflow-hidden w-[280px] h-[280px] md:w-[380px] md:h-[380px] ring-8 ring-white shadow-2xl">
               <img src={t.portrait} alt={t.name} className="w-full h-full object-cover" />
             </div>
           </div>
 
           {/* Quote */}
-          <div key={t.id}>
+          <div data-reveal="right" key={t.id}>
             <img src={IMG.quote} alt="" className="w-14 mb-6 opacity-90" />
             <p className="text-xl md:text-2xl text-primary-900 leading-relaxed font-medium">
               "{t.text}"

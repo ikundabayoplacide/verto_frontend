@@ -6,6 +6,7 @@ import { AboutValues } from '../components/sections/AboutValues';
 import { AboutTimeline } from '../components/sections/AboutTimeline';
 import { AboutTeam } from '../components/sections/AboutTeam';
 import { AboutPartners } from '../components/sections/AboutPartners';
+import { Stats } from '../components/sections/Stats';
 import { CTA } from '../components/sections/CTA';
 
 export default function AboutPage() {
@@ -14,6 +15,7 @@ export default function AboutPage() {
       <Navbar />
       <AboutHero />
       <AboutMission />
+      <Stats />
       <AboutValues />
       <AboutTimeline />
       <AboutTeam />

@@ -6,6 +6,15 @@ const IMG = {
   iconCircle: 'https://rcb.rw/svgs/Icon%20circle%20shape.png',
 };
 
+const IMG2 = {
+  iconCircle: 'https://rcb.rw/svgs/footer-bg.svg',
+};
+
+const FACTS = [
+  'Rwf 954M raised via KWF for Impexcor Ltd — Green Project in Eastern Province (2025)',
+  'Rwf 125M mobilized from Rwanda Green Fund (FONERWA) for ULK renewable energy initiatives (2024)',
+  'Active partner under Africa 50 framework — mobilizing infrastructure finance across East Africa since 2022',
+];
 const STATS = [
   { value: 15,  suffix: '+', label: 'Years of Experience' },
   { value: 954, suffix: 'M+', label: 'RWF Raised for Clients (Rwf)' },
@@ -35,10 +44,10 @@ function StatItem({ value, suffix, label, active }: (typeof STATS)[0] & { active
   return (
     <div className="flex flex-col items-center text-center px-4">
       <img src={IMG.iconCircle} alt="" className="w-12 h-12 mb-4 opacity-90" />
-      <div className="text-5xl md:text-6xl font-black text-primary-900 tabular-nums">
+      <div className="inline-block bg-primary-900 rounded-2xl px-6 py-3 text-5xl md:text-6xl font-black text-white tabular-nums shadow-lg">
         {n.toLocaleString()}<span className="text-accent-500">{suffix}</span>
       </div>
-      <div className="mt-2 text-sm md:text-base text-secondary-500 max-w-[180px]">{label}</div>
+      <div className="mt-3 text-sm md:text-base text-primary-500 max-w-[180px]">{label}</div>
     </div>
   );
 }
@@ -61,7 +70,7 @@ export function Stats() {
     <section ref={ref} className="relative py-10 overflow-hidden bg-white">
       <img src={IMG.upperShape} alt="" className="absolute top-0 inset-x-0 w-full opacity-40 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
-        <div className="grid lg:grid-cols-2 gap-10 items-end mb-16">
+        <div data-reveal className="grid lg:grid-cols-2 gap-10 items-end mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-primary-900 leading-tight uppercase tracking-tight">
             Our Work <span className="text-accent-500">in Numbers</span>
           </h2>
@@ -70,9 +79,20 @@ export function Stats() {
             <p className="mt-3 text-sm font-bold text-primary-900">www.verto.rw · info@verto.rw</p>
           </div>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 py-12 border-y border-secondary-200">
+        <div data-reveal className="grid grid-cols-2 lg:grid-cols-4 gap-6 py-8 border-y border-secondary-200">
           {STATS.map((s) => (
             <StatItem key={s.label} {...s} active={active} />
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 ">
+        <div className="grid md:grid-cols-3 gap-10">
+          {FACTS.map((f) => (
+            <div key={f} className="flex flex-col items-start gap-4">
+              <img src={IMG2.iconCircle} alt="" className="w-26 h-26" />
+              <h4 className="text-base font-bold text-primary-900 leading-snug">{f}</h4>
+            </div>
           ))}
         </div>
       </div>

@@ -11,45 +11,58 @@ const VIDEOS = [
 
 export function Hero() {
   const [current, setCurrent] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const refs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
-    const video = videoRef.current;
+    // Play first video immediately
+    refs.current[0]?.play().catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const video = refs.current[current];
     if (!video) return;
-    const onEnded = () => setCurrent((c) => (c + 1) % VIDEOS.length);
+    video.currentTime = 0;
+    video.play().catch(() => {});
+    const onEnded = () => {
+      const next = (current + 1) % VIDEOS.length;
+      setCurrent(next);
+    };
     video.addEventListener('ended', onEnded);
     return () => video.removeEventListener('ended', onEnded);
   }, [current]);
 
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden">
-      <video
-        ref={videoRef}
-        key={VIDEOS[current]}
-        autoPlay
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src={VIDEOS[current]} type="video/mp4" />
-        <img src="/images/City.jpg" alt="Verto Holdings" className="w-full h-full object-cover" />
-      </video>
+      {VIDEOS.map((src, i) => (
+        <video
+          key={src}
+          ref={(el) => { refs.current[i] = el; }}
+          muted
+          playsInline
+          preload="auto"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            i === current ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      ))}
       <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 via-primary-900/60 to-primary-900/30" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-20 md:pt-20 ">
-        <span className="flex items-center gap-3 mb-6">
+        <span data-reveal className="flex items-center gap-3 mb-6">
           <span aria-hidden="true" className="w-8 h-px bg-accent-400" />
           <span className="text-xs font-bold text-accent-400 uppercase tracking-[0.2em]">Financial &amp; Investment Advisory</span>
           <span aria-hidden="true" className="w-8 h-px bg-accent-400" />
         </span>
-        <h1 className="text-white font-black leading-[0.95] text-5xl md:text-7xl uppercase tracking-tight">
+        <h1 data-reveal className="text-white font-black leading-[0.95] text-5xl md:text-7xl uppercase tracking-tight">
           Empowering Your
           <span className="block text-accent-400 mt-2">Growth.</span>
         </h1>
-        <p className="mt-6 text-white/85 text-lg md:text-xl max-w-xl leading-relaxed">
+        <p data-reveal className="mt-6 text-white/85 text-lg md:text-xl max-w-xl leading-relaxed">
           Verto Holdings Ltd specialized consultancy in capital raising, financial structuring, ESG advisory, and capital market development across Rwanda and East Africa.
         </p>
-        <div className="mt-10 flex flex-wrap gap-4">
+        <div data-reveal className="mt-10 flex flex-wrap gap-4">
           <Link
             to="/contact"
             className="inline-flex items-center gap-3 rounded-full bg-accent-500 hover:bg-accent-400 text-white px-7 py-3.5 font-bold text-sm uppercase tracking-widest shadow-lg shadow-black/20 transition"
