@@ -43,8 +43,8 @@ const REASONS = [
 
 export function WhyUs() {
   return (
-    <section id="why-us" className="relative bg-secondary-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <section id="why-us" className="relative  bg-secondary-50 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mt-6 mb-4 lg:px-10 relative">
         <div>
           <span className="flex items-center gap-3 mb-4">
             <span aria-hidden="true" className="w-8 h-px bg-accent-500" />

@@ -27,6 +27,7 @@ export function Navbar() {
   const [dropdownKey, setDropdownKey] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => { setMenuOpen(false); setDropdownKey(null); }, [location.pathname]);
 
@@ -61,11 +62,11 @@ export function Navbar() {
   const activeLinkClass = ({ isActive }: { isActive: boolean }) =>
     [
       'text-base font-bold transition-colors duration-150 relative',
-      'after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-primary-400',
+      'after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-accent-400',
       'after:transition-all after:duration-200',
       isActive
-        ? 'text-primary-500 after:w-full'
-        : 'text-primary-900 hover:text-primary-700 after:w-0 hover:after:w-full',
+        ? 'text-accent-400 after:w-full'
+        : 'text-white hover:text-accent-300 after:w-0 hover:after:w-full',
     ].join(' ');
 
   return (
@@ -82,9 +83,9 @@ export function Navbar() {
       <header
         className={[
           'fixed top-0 left-0 right-0 z-40 transition-all duration-300',
-          scrolled
-            ? 'bg-primary-50 backdrop-blur-md shadow-lg shadow-primary-900/50'
-            : 'bg-primary-50 backdrop-blur-md',
+          scrolled || !isHome
+            ? 'bg-primary-900/95 backdrop-blur-md shadow-lg shadow-primary-900/50'
+            : 'bg-transparent',
         ].join(' ')}
       >
         <nav
@@ -107,7 +108,7 @@ export function Navbar() {
                     aria-haspopup="true"
                     aria-expanded={dropdownKey === item.label}
                     onClick={() => setDropdownKey((k) => (k === item.label ? null : item.label))}
-                    className="inline-flex items-center gap-1 text-base font-bold text-primary-900 hover:text-primary-500 transition-colors duration-150"
+                    className="inline-flex items-center gap-1 text-base font-bold text-white hover:text-accent-300 transition-colors duration-150"
                   >
                     {item.label}
                     <svg aria-hidden="true" className={['w-3.5 h-3.5 transition-transform duration-200', dropdownKey === item.label ? 'rotate-180' : ''].join(' ')} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
