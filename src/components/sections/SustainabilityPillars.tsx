@@ -48,7 +48,7 @@ const colorMap: Record<string, { bg: string; text: string; border: string; dot: 
 
 export function SustainabilityPillars() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-10 items-end mb-16" data-reveal>
           <div>

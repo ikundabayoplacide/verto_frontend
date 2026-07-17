@@ -4,7 +4,7 @@ export function SustainabilityHero() {
       <img src="/images/home.jpg" alt="Sustainability" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-primary-900/92 via-primary-900/65 to-primary-900/25" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-40 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-20 w-full">
         <span className="flex items-center gap-3 mb-5">
           <span aria-hidden="true" className="w-8 h-px bg-accent-400" />
           <span className="text-xs font-bold text-accent-400 uppercase tracking-[0.2em]">Our Commitment</span>

@@ -23,14 +23,14 @@ function IconChat() {
 function PlanFab() {
   return (
     <Link
-      to="/contact"
+      to="/"
       id="plan"
       className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-3 rounded-full bg-white shadow-2xl shadow-black/20 border border-secondary-200 px-5 py-3 hover:shadow-black/30 transition-shadow duration-200"
     >
       <span className="grid place-items-center w-9 h-9 rounded-full bg-accent-500 text-white">
         <IconChat />
       </span>
-      <span className="text-sm font-semibold text-primary-900">Plan Your Event</span>
+      <span className="text-sm font-semibold text-primary-900">Talk to Us</span>
       <span className="text-[10px] font-semibold uppercase text-accent-600 bg-accent-50 rounded-full px-2 py-0.5">Beta</span>
     </Link>
   );

@@ -8,7 +8,7 @@ const MILESTONES = [
 
 export function AboutTimeline() {
   return (
-    <section className="py-24 bg-secondary-50">
+    <section className="py-8 bg-secondary-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="mb-14" data-reveal>
           <span className="flex items-center gap-3 mb-4">

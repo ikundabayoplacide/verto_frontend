@@ -6,7 +6,7 @@ const PARTNERS = [
 
 export function AboutPartners() {
   return (
-    <section className="py-20 bg-white border-t border-secondary-100">
+    <section className="py-8 bg-white border-t border-secondary-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="text-center mb-12" data-reveal>
           <span className="flex items-center justify-center gap-3 mb-4">

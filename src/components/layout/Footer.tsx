@@ -6,10 +6,10 @@ const SERVICES_LINKS = [
   { label: 'Capital Raising',           href: '/services/capital-raising' },
   { label: 'Business Plan Development', href: '/services/business-plan' },
   { label: 'Asset Management',          href: '/services/asset-management' },
-  { label: 'Corporate Finance',         href: '/services/corporate-finance' },
-  { label: 'Private Equity',            href: '/services/private-equity' },
-  { label: 'Sustainable Finance',       href: '/services/esg-sustainable-finance' },
-  { label: 'Commodity Trading',         href: '/services/commodities-trading' },
+  // { label: 'Corporate Finance',         href: '/services/corporate-finance' },
+  // { label: 'Private Equity',            href: '/services/private-equity' },
+  // { label: 'Sustainable Finance',       href: '/services/esg-sustainable-finance' },
+  // { label: 'Commodity Trading',         href: '/services/commodities-trading' },
 ];
 
 const COMPANY = [
@@ -127,11 +127,12 @@ export function Footer() {
 
   return (
     <footer className="relative bg-primary-900 border-t border-primary-700">
+      <img src="/images/imigongo.png" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" />
       <div className="w-full h-[18px] overflow-hidden relative">
         <ImigongoPattern />
       </div>
       {/* Main grid */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-16 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand */}
         <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-1">
           <Link to="/" aria-label="Verto Holdings — Home">
@@ -141,9 +142,7 @@ export function Footer() {
               className="h-12 w-auto object-contain"
             />
           </Link>
-          <p className="text-sm text-secondary-100 leading-relaxed max-w-xs">
-            Verto Holdings Ltd — Financial &amp; Investment Advisory. KG 9 Ave, Nyarugenge, Kigali, Rwanda.
-          </p>
+        
           {/* Socials */}
           <ul className="flex items-center gap-3 mt-1" role="list">
             {SOCIALS.map((s) => (
@@ -278,18 +277,7 @@ export function Footer() {
             </li>
           </ul>
 
-          {/* Map embed */}
-          <div className="relative w-full h-40 border border-primary-700 overflow-hidden mt-2 rounded">
-            <iframe
-              title="Verto Holdings Location"
-              src="https://www.google.com/maps?q=KG+9+Ave,+Nyarugenge,+Kigali,+Rwanda&z=17&output=embed"
-              width="100%"
-              height="100%"
-              className="absolute inset-0 w-full h-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
+
         </div>
       </div>
 

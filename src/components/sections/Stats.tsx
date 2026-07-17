@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
 const IMG = {
-  upperShape: 'https://rcb.rw/images/Upper_shape.png',
+  // upperShape: 'https://rcb.rw/images/Upper_shape.png',
+  upperShape: '/public/images/imigongo.png',
   iconCircle: 'https://rcb.rw/svgs/Icon%20circle%20shape.png',
 };
 
@@ -57,7 +58,7 @@ export function Stats() {
   }, []);
 
   return (
-    <section ref={ref} className="relative py-24 overflow-hidden bg-white">
+    <section ref={ref} className="relative py-10 overflow-hidden bg-white">
       <img src={IMG.upperShape} alt="" className="absolute top-0 inset-x-0 w-full opacity-40 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
         <div className="grid lg:grid-cols-2 gap-10 items-end mb-16">

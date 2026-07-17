@@ -9,7 +9,7 @@ import { SustainabilityCommitments } from '../components/sections/Sustainability
 
 function CTA() {
   return (
-    <section className="relative py-24 bg-primary-50 overflow-hidden">
+    <section className="relative mb-2 bg-primary-50 overflow-hidden">
       <ImigongoPattern position="top" height={10} />
       <div className="max-w-3xl mx-auto px-6 text-center" data-reveal>
         <h2 className="text-4xl md:text-5xl font-black text-primary-900 uppercase tracking-tight leading-[0.95]">

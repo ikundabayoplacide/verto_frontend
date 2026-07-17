@@ -39,7 +39,7 @@ const VALUES = [
 
 export function AboutValues() {
   return (
-    <section className="py-24 bg-primary-900 relative overflow-hidden">
+    <section className="py-8 bg-primary-900 relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-5 pointer-events-none"
         style={{

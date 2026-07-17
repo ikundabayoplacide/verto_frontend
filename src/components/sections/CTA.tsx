@@ -6,7 +6,7 @@ const IMG = {
 
 export function CTA() {
   return (
-    <section aria-label="Call to action" className="relative bg-primary-900 py-24 overflow-hidden">
+    <section aria-label="Call to action" className="relative bg-primary-900 py-10 overflow-hidden">
       <img src={IMG.footerBg} alt="" className="absolute bottom-0 inset-x-0 w-full opacity-20 pointer-events-none" />
       <div className="max-w-4xl mx-auto text-center px-6 relative">
         <span className="flex items-center justify-center gap-3 mb-6">

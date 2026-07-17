@@ -1,18 +1,42 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const IMG = {
-  hero: '/images/City.jpg',
-  sun:  'https://rcb.rw/svgs/sun.svg',
-};
+const IMG = { sun: 'https://rcb.rw/svgs/sun.svg' };
+
+const VIDEOS = [
+  '/images/vero1.mp4',
+  '/images/vero2.mp4',
+  '/images/vero3.mp4',
+];
 
 export function Hero() {
+  const [current, setCurrent] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const onEnded = () => setCurrent((c) => (c + 1) % VIDEOS.length);
+    video.addEventListener('ended', onEnded);
+    return () => video.removeEventListener('ended', onEnded);
+  }, [current]);
+
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden">
-      <img src={IMG.hero} alt="Verto Holdings" className="absolute inset-0 w-full h-full object-cover" />
+      <video
+        ref={videoRef}
+        key={VIDEOS[current]}
+        autoPlay
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={VIDEOS[current]} type="video/mp4" />
+        <img src="/images/City.jpg" alt="Verto Holdings" className="w-full h-full object-cover" />
+      </video>
       <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 via-primary-900/60 to-primary-900/30" />
-      <img src={IMG.sun} alt="" className="absolute top-24 left-8 w-24 opacity-70 hidden md:block" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-40 md:pt-56 pb-40">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-20 md:pt-20 ">
         <span className="flex items-center gap-3 mb-6">
           <span aria-hidden="true" className="w-8 h-px bg-accent-400" />
           <span className="text-xs font-bold text-accent-400 uppercase tracking-[0.2em]">Financial &amp; Investment Advisory</span>
@@ -43,6 +67,8 @@ export function Hero() {
           </Link>
         </div>
       </div>
+
+      <img src={IMG.sun} aria-hidden="true" className="absolute -top-10 -right-10 w-[420px] opacity-10 pointer-events-none select-none" />
 
       <svg viewBox="0 0 1440 120" className="absolute bottom-0 inset-x-0 w-full text-white" preserveAspectRatio="none">
         <polygon points="0,120 0,60 240,90 480,40 720,80 960,30 1200,70 1440,20 1440,120" fill="currentColor" />

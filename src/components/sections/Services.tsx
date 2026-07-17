@@ -8,7 +8,7 @@ const IMG = {
 
 export function Services() {
   return (
-    <section id="services" className="relative py-24 bg-white overflow-hidden">
+    <section id="services" className="relative bg-white overflow-hidden">
       <img src={IMG.footerBg} alt="" className="absolute top-0 inset-x-0 w-full opacity-60 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
         <div className="grid lg:grid-cols-2 gap-10 items-end mb-14">
@@ -26,14 +26,14 @@ export function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {SERVICES_DATA.map((s) => (
-            <Link key={s.slug} to={`/services/${s.slug}`} className="group relative overflow-hidden rounded-2xl aspect-[3/4] block">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          {SERVICES_DATA.slice(0, 4).map((s) => (
+            <Link key={s.slug} to={`/services/${s.slug}`} className="group relative overflow-hidden aspect-[3/4] block">
               <img src={s.img} alt={s.title} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-900/85 via-primary-900/20 to-transparent" />
-              <img src={IMG.onImgShape} alt="" className="absolute bottom-4 left-4 w-10 opacity-90" />
+              <img src={IMG.onImgShape} alt="" className="absolute bottom-4 left-4 w-60 opacity-90" />
               <div className="absolute bottom-5 left-5 right-5">
-                <h3 className="text-white font-bold text-lg leading-snug">{s.title}</h3>
+                <h3 className="text-primary-900 font-bold text-lg leading-snug">{s.title}</h3>
               </div>
             </Link>
           ))}

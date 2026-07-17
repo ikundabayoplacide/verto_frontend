@@ -32,7 +32,7 @@ export function Testimonials() {
   const t = TESTIMONIALS[current];
 
   return (
-    <section id="testimonials" className="relative py-28 bg-white overflow-hidden">
+    <section id="testimonials" className="relative py-10 bg-white overflow-hidden">
       <img src={IMG.bigCircle} alt="" className="absolute -right-40 top-1/2 -translate-y-1/2 w-[720px] opacity-40 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
         <h2 className="text-4xl md:text-5xl font-black text-primary-900 uppercase tracking-tight mb-16">

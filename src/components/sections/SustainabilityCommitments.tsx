@@ -57,7 +57,7 @@ const COMMITMENTS = [
 
 export function SustainabilityCommitments() {
   return (
-    <section className="py-24 bg-secondary-50">
+    <section className="py-12 bg-secondary-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-10 items-end mb-16" data-reveal>
           <div>

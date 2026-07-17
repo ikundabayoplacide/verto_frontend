@@ -1,6 +1,6 @@
 export function AboutMission() {
   return (
-    <section className="py-24 bg-white">
+    <section className=" bg-white mb-2">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
         {/* Image side */}
         <div className="relative" data-reveal="left">
