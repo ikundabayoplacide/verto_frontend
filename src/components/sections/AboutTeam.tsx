@@ -26,7 +26,7 @@ const TEAM: TeamMember[] = [
     name: 'Utuje Honoratha',
     role: 'Operations & Finance',
     qualification: 'BSc Accounting Sciences · CPA (Advanced) – ICPAR',
-    img: '/public/images/profile3.jpeg',
+    img: '/images/profile3.jpeg',
     bio: [
       'UTUJE Honoratha is a seasoned financial management professional with over 15 years of experience in accounting, auditing, and public fund administration. She currently serves as an Internal Auditor at the Gender Monitoring Office, where she leads compliance audits, risk assessments, and financial reporting initiatives.',
       'Her expertise spans across various public institutions, including local government and the health sector, where she has consistently demonstrated her capability in maintaining financial transparency, implementing internal controls, and guiding financial strategy.',
@@ -38,7 +38,7 @@ const TEAM: TeamMember[] = [
     name: 'Mr. Joseph Seba Mutware',
     role: 'Board Chairperson',
     qualification: 'MSc. Economic and Rural Development · Wageningen University',
-    img: '/public/images/profile2.jpeg',
+    img: '/images/profile2.jpeg',
     bio: [
       'Joseph Seba Mutware is a seasoned expert in policy and institutional development with over 18 years of experience in the public, private, and development sectors. His work focuses on sustainable agriculture, agribusiness, agricultural finance, food systems, and rural development.',
       'He is widely recognized for his ability to integrate cross-cutting priorities like gender equity, youth inclusion, climate resilience, and private sector engagement into both national and regional strategies. Joseph has successfully led complex, evidence-based policy reforms and has an extensive track record in advisory services, strategic planning, and institutional capacity building.',
@@ -50,7 +50,7 @@ const TEAM: TeamMember[] = [
     name: 'Mr. Elijah Kihooto Mariga',
     role: 'Board Member',
     qualification: 'CIFA · CPA · MBA Finance (Daystar University)',
-    img: '/public/images/profile6.jpg',
+    img: '/images/profile6.jpg',
     bio: [
       'An accomplished Finance/Accounting expert with extensive experience in budgeting, managing overall accounting functions, preparing and analyzing financial reports, bank and cash management, handling external audit and tax matters.',
       'He possesses a proven ability to improve and maximize overall business and finance function integration through effective communication processes, with strong skills in coordinating all aspects from inception through completion.',
