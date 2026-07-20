@@ -5,8 +5,9 @@ const IMG = { sun: 'https://rcb.rw/svgs/sun.svg' };
 
 const VIDEOS = [
   '/images/vero2.mp4',
-  '/images/vero1.mp4',
   '/images/vero3.mp4',
+  '/images/vero1.mp4',
+  
 ];
 
 export function Hero() {
