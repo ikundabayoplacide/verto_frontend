@@ -23,7 +23,7 @@ function IconChat() {
 function PlanFab() {
   return (
     <Link
-      to="/"
+      to="/contact"
       id="plan"
       className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-3 rounded-full bg-white shadow-2xl shadow-black/20 border border-secondary-200 px-5 py-3 hover:shadow-black/30 transition-shadow duration-200"
     >

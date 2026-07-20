@@ -11,7 +11,7 @@ const INFO = [
       </svg>
     ),
     label: 'Office',
-    value: 'KG 9 Ave, Nyarugenge, Kigali, Rwanda',
+    value: '	Nyamata, Bugesera District, Eastern  Province, Rwanda',
     href: undefined,
   },
   {
@@ -21,8 +21,8 @@ const INFO = [
       </svg>
     ),
     label: 'Phone',
-    value: '+250 782 170 000',
-    href: 'tel:+250782170000',
+    value: '+250 788 359 600',
+    href: '+250 788 359 600',
   },
   {
     icon: (
@@ -59,7 +59,7 @@ export default function ContactPage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-900/92 via-primary-900/65 to-primary-900/30" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-40 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-30 w-full">
           <span className="flex items-center gap-3 mb-5">
             <span aria-hidden="true" className="w-8 h-px bg-accent-400" />
             <span className="text-xs font-bold text-accent-400 uppercase tracking-[0.2em]">Reach Out</span>
@@ -68,7 +68,7 @@ export default function ContactPage() {
             Get In <span className="block text-accent-400 mt-1">Touch</span>
           </h1>
           <p className="mt-5 text-white/80 text-lg max-w-xl leading-relaxed">
-            Have a project in mind or need financial advisory? Our team is ready to help — reach out and we'll respond within 24 hours.
+            Have a project in mind or need financial advisory? Our team is ready to help  reach out and we'll respond within 24 hours.
           </p>
         </div>
         {/* Wave into white */}
@@ -78,7 +78,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── Info cards strip ── */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-6">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {INFO.map(item => (
@@ -106,7 +106,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── Form + Map ── */}
-      <section className="bg-secondary-50 py-20 border-t border-secondary-100">
+      <section className="bg-secondary-50 py-10 border-t border-secondary-100">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-start">
 
           {/* Left — heading + map */}
@@ -125,10 +125,10 @@ export default function ContactPage() {
             </div>
 
             {/* Map */}
-            <div className="relative rounded-2xl overflow-hidden border border-secondary-200 shadow-lg" style={{ height: '340px' }}>
+            <div className="relative rounded-2xl overflow-hidden border border-secondary-200 shadow-lg" style={{ height: '410px' }}>
               <iframe
                 title="Verto Holdings Location"
-                src="https://www.google.com/maps?q=KG+9+Ave,+Nyarugenge,+Kigali,+Rwanda&z=16&output=embed"
+                src="https://www.google.com/maps?q=Nyamata,+Bugesera+District,+Eastern+Province,+Rwanda&z=14&output=embed"
                 width="100%"
                 height="100%"
                 className="absolute inset-0 w-full h-full"
@@ -137,7 +137,7 @@ export default function ContactPage() {
               />
               <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm rounded-xl px-3 py-2 pointer-events-none shadow">
                 <p className="text-xs font-bold text-accent-600 uppercase tracking-widest">Verto Holdings Ltd</p>
-                <p className="text-xs text-secondary-500 mt-0.5">KG 9 Ave, Nyarugenge, Kigali</p>
+                <p className="text-xs text-secondary-500 mt-0.5">Nyamata, Bugesera District, Eastern Province</p>
               </div>
             </div>
           </div>

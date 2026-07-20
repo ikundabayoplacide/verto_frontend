@@ -52,7 +52,7 @@ function ServiceModal({ service, onClose }: { service: Service; onClose: () => v
 function ServicesHero() {
   return (
     <section className="relative min-h-[50vh] flex items-end overflow-hidden">
-      <img src="/images/bd.jpeg" alt="Verto Holdings services" className="absolute inset-0 w-full h-full object-cover" />
+      <img src="/images/highlight-protection.jpg" alt="Verto Holdings services" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-primary-900/70 via-primary-900/40 to-primary-900/10" />
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-30 w-full">
         <span className="flex items-center gap-3 mb-5">
@@ -145,7 +145,7 @@ function CTA() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link
-            to="/"
+            to="/contact"
             className="inline-flex items-center gap-3 rounded-full bg-accent-500 hover:bg-accent-400 text-white px-7 py-3.5 font-bold text-sm uppercase tracking-widest shadow-lg shadow-accent-900/20 transition"
           >
             Get a Consultation

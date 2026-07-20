@@ -24,7 +24,7 @@ const INITIATIVES = [
     img: '/images/City.jpg',
     tag: 'Infrastructure',
     title: 'Africa 50 Infrastructure Finance',
-    desc: 'Active partner under the Africa 50 framework — mobilizing long-term infrastructure finance across East Africa, with a focus on sustainable, high-impact projects aligned with the African Development Bank\'s priorities.',
+    desc: 'Active partner under the Africa 50 framework  mobilizing long-term infrastructure finance across East Africa, with a focus on sustainable, high-impact projects aligned with the African Development Bank\'s priorities.',
     year: '2022–Present',
   },
 ];

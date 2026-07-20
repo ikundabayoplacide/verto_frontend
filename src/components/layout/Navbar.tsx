@@ -18,7 +18,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Services", href: "/services", children: NAV_SERVICES },
   { label: "Sustainability", href: "/sustainability" },
   { label: "Media", href: "/media" },
-  { label: "Contact", href: "/" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
@@ -139,7 +139,7 @@ export function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <Link to="/" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-500 text-secondary-50 text-sm font-semibold hover:bg-primary-600 active:bg-primary-700 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-500 text-secondary-50 text-sm font-semibold hover:bg-primary-600 active:bg-primary-700 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400">
               Get a Quote
             </Link>
           </div>
@@ -251,7 +251,7 @@ export function Navbar() {
         {/* Sidebar footer CTA */}
         <div className="px-4 py-5 border-t border-primary-700">
           <Link
-            to="/"
+            to="/contact"
             onClick={() => setMenuOpen(false)}
             className="block w-full text-center px-4 py-3 bg-primary-500 text-secondary-50 text-sm font-bold uppercase tracking-widest hover:bg-primary-400 transition-colors duration-150 rounded-lg"
           >

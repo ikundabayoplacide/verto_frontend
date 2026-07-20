@@ -14,8 +14,8 @@ const SERVICES_LINKS = [
 
 const COMPANY = [
   { label: 'About Us', href: '/about' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Contact',  href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: 'Contact',  href: '/contact' },
 ];
 
 const SOCIALS = [
@@ -247,7 +247,7 @@ export function Footer() {
                 />
               </svg>
               <a
-                href="tel:+250782170000"
+                href="+250 788 359 600"
                 className="hover:text-primary-300 transition-colors duration-150"
               >
                 +250 788 359 600

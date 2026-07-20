@@ -22,7 +22,7 @@ export function Services() {
             </h2>
           </div>
           <p className="text-secondary-500 leading-relaxed">
-            From capital raising and business restructuring to ESG advisory and capital market development — a full suite of financial consultancy services tailored to your needs.
+            From capital raising and business restructuring to ESG advisory and capital market development  a full suite of financial consultancy services tailored to your needs.
           </p>
         </div>
 

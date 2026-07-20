@@ -52,7 +52,7 @@ export function Hero() {
         </p>
         <div data-reveal className="mt-10 flex flex-wrap gap-4">
           <Link
-            to="/"
+            to="/contact"
             className="inline-flex items-center gap-3 rounded-full bg-accent-500 hover:bg-accent-400 text-white px-7 py-3.5 font-bold text-sm uppercase tracking-widest shadow-lg shadow-black/20 transition"
           >
             Get a Consultation

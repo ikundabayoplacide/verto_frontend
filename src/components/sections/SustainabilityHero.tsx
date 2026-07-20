@@ -13,7 +13,7 @@ export function SustainabilityHero() {
           Sustainability<span className="block text-accent-400 mt-1">& ESG</span>
         </h1>
         <p className="mt-5 text-white/80 text-lg max-w-xl leading-relaxed">
-          Embedding environmental, social, and governance principles at the heart of everything we do — for a resilient, inclusive East Africa.
+          Embedding environmental, social, and governance principles at the heart of everything we do for a resilient, inclusive East Africa.
         </p>
       </div>
 

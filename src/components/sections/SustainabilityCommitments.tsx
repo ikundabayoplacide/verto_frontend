@@ -24,7 +24,7 @@ const COMMITMENTS = [
       </svg>
     ),
     title: 'Responsible Investment',
-    desc: 'We apply ESG screening to all investment advisory mandates, ensuring that capital is deployed responsibly — avoiding harm and actively seeking opportunities that generate positive environmental and social returns.',
+    desc: 'We apply ESG screening to all investment advisory mandates, ensuring that capital is deployed responsibly  avoiding harm and actively seeking opportunities that generate positive environmental and social returns.',
   },
   {
     icon: (
@@ -33,7 +33,7 @@ const COMMITMENTS = [
       </svg>
     ),
     title: 'Transparent Reporting',
-    desc: 'We hold ourselves to the highest standards of transparency, publishing impact reports aligned with GRI Standards and TCFD recommendations — ensuring accountability to clients, partners, and communities.',
+    desc: 'We hold ourselves to the highest standards of transparency, publishing impact reports aligned with GRI Standards and TCFD recommendations  ensuring accountability to clients, partners, and communities.',
   },
   {
     icon: (
@@ -42,7 +42,7 @@ const COMMITMENTS = [
       </svg>
     ),
     title: 'Regional Collaboration',
-    desc: 'Through partnerships with Africa 50, FONERWA, the EAC, and development finance institutions, we amplify our sustainability impact beyond Rwanda — contributing to a more resilient East African economy.',
+    desc: 'Through partnerships with Africa 50, FONERWA, the EAC, and development finance institutions, we amplify our sustainability impact beyond Rwanda  contributing to a more resilient East African economy.',
   },
   {
     icon: (
@@ -51,7 +51,7 @@ const COMMITMENTS = [
       </svg>
     ),
     title: 'Capacity Building',
-    desc: 'We invest in knowledge transfer — training clients, SMEs, and market participants on ESG principles, sustainable finance instruments, and responsible business practices to build lasting institutional capacity.',
+    desc: 'We invest in knowledge transfer  training clients, SMEs, and market participants on ESG principles, sustainable finance instruments, and responsible business practices to build lasting institutional capacity.',
   },
 ];
 
@@ -70,7 +70,7 @@ export function SustainabilityCommitments() {
             </h2>
           </div>
           <p className="text-secondary-500 leading-relaxed">
-            Sustainability is not a checkbox — it is embedded in our culture, our processes, and the outcomes we pursue for every client and community we serve.
+            Sustainability is not a checkbox it is embedded in our culture, our processes, and the outcomes we pursue for every client and community we serve.
           </p>
         </div>
 

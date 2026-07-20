@@ -67,7 +67,7 @@ export function Contact() {
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <Input label="Full Name" placeholder="John Doe" value={form.name} onChange={handleChange('name')} error={errors.name} fullWidth required autoComplete="name" />
-        <Input label="Phone Number" placeholder="+250 700 000 000" value={form.phone} onChange={handleChange('phone')} fullWidth type="tel" autoComplete="tel" />
+        <Input label="Phone Number" placeholder="+250 788 359 600" value={form.phone} onChange={handleChange('phone')} fullWidth type="tel" autoComplete="tel" />
       </div>
       <Input label="Email Address" placeholder="you@example.com" value={form.email} onChange={handleChange('email')} error={errors.email} fullWidth required type="email" autoComplete="email" />
       <Select label="Service of Interest" options={SERVICE_OPTIONS} value={form.service} onChange={handleChange('service')} error={errors.service} fullWidth />

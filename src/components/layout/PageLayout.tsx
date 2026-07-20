@@ -19,7 +19,7 @@ export function PageLayout({ children, className = '' }: PageLayoutProps) {
         {children}
       </main>
       <Footer />
-      <WhatsAppFAB phone="250782170000" message="Hello! I'd like to discuss a project." />
+      <WhatsAppFAB phone="250 788 359 600" message="Hello! I'd like to discuss a project." />
     </>
   );
 }

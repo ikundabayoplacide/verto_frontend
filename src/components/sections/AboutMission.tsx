@@ -32,7 +32,7 @@ export function AboutMission() {
             Verto Holdings Ltd is a specialized consultancy firm offering cutting-edge financial, investment, and capital market advisory services across Rwanda and the broader East African region. Founded with a vision to bridge the capital and knowledge gaps between enterprises and financial institutions, we deliver bespoke solutions for businesses seeking sustainable growth.
           </p>
           <p className="text-secondary-600 leading-relaxed">
-            Our strategic mission is to empower public and private entities through customized consultancy in capital raising, financial structuring, ESG compliance, sustainable finance, and market development — backed by a team of highly experienced professionals.
+            Our strategic mission is to empower public and private entities through customized consultancy in capital raising, financial structuring, ESG compliance, sustainable finance, and market development  backed by a team of highly experienced professionals.
           </p>
 
           <div className="grid grid-cols-2 gap-5 pt-2">

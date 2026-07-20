@@ -11,9 +11,9 @@ const IMG2 = {
 };
 
 const FACTS = [
-  'Rwf 954M raised via KWF for Impexcor Ltd — Green Project in Eastern Province (2025)',
+  'Rwf 954M raised via KWF for Impexcor Ltd  Green Project in Eastern Province (2025)',
   'Rwf 125M mobilized from Rwanda Green Fund (FONERWA) for ULK renewable energy initiatives (2024)',
-  'Active partner under Africa 50 framework — mobilizing infrastructure finance across East Africa since 2022',
+  'Active partner under Africa 50 framework  mobilizing infrastructure finance across East Africa since 2022',
 ];
 const STATS = [
   { value: 15,  suffix: '+', label: 'Years of Experience' },

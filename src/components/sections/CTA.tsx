@@ -19,11 +19,11 @@ export function CTA() {
           <span className="text-primary-400">Extraordinary.</span>
         </h2>
         <p className="mt-5 text-white/80 text-lg leading-relaxed max-w-xl mx-auto">
-          Whether you have detailed plans or just an idea — our team is ready to guide you from concept to completion.
+          Whether you have detailed plans or just an idea  our team is ready to guide you from concept to completion.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Link
-            to="/"
+            to="/contact"
             className="inline-flex items-center gap-2 rounded-full bg-primary-500 hover:bg-primary-400 text-white px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition"
           >
             Get a Free Quote
@@ -32,7 +32,7 @@ export function CTA() {
             </svg>
           </Link>
           <a
-            href="tel:+250782170000"
+            href="/contact"
             className="inline-flex items-center gap-2 rounded-full border border-white/30 text-white/80 hover:border-white/60 hover:text-white px-8 py-3.5 font-semibold text-sm uppercase tracking-widest transition"
           >
             Call Us Now

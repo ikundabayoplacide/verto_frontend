@@ -16,7 +16,7 @@ function CTA() {
           Build a Sustainable<span className="block text-accent-500">Future With Us</span>
         </h2>
         <p className="mt-5 text-secondary-600 leading-relaxed">
-          Whether you need ESG advisory, green bond structuring, or sustainable finance solutions — our team is ready to help you lead with purpose.
+          Whether you need ESG advisory, green bond structuring, or sustainable finance solutions our team is ready to help you lead with purpose.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link

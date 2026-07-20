@@ -9,7 +9,7 @@ const PILLARS = [
       </svg>
     ),
     title: 'Green Finance & Climate Action',
-    desc: 'We structure and facilitate green bonds, climate-resilient investments, and sustainable infrastructure financing — helping clients align with Rwanda\'s green growth strategy and international climate commitments.',
+    desc: 'We structure and facilitate green bonds, climate-resilient investments, and sustainable infrastructure financing  helping clients align with Rwanda\'s green growth strategy and international climate commitments.',
     points: ['Green bond structuring', 'FONERWA & climate fund access', 'Climate risk assessment', 'Carbon-neutral investment advisory'],
   },
   {
@@ -22,7 +22,7 @@ const PILLARS = [
       </svg>
     ),
     title: 'Inclusive Growth & Social Impact',
-    desc: 'We champion financial inclusion, SME empowerment, and youth and gender equity in capital markets — ensuring that economic growth reaches every segment of society across East Africa.',
+    desc: 'We champion financial inclusion, SME empowerment, and youth and gender equity in capital markets  ensuring that economic growth reaches every segment of society across East Africa.',
     points: ['SME capital access programs', 'Gender-lens investing', 'Youth financial inclusion', 'Community impact reporting'],
   },
   {
@@ -35,7 +35,7 @@ const PILLARS = [
       </svg>
     ),
     title: 'Transparent Governance & Compliance',
-    desc: 'We embed robust governance frameworks into every client engagement — from ESG reporting and board advisory to regulatory compliance and corporate transparency standards aligned with international best practices.',
+    desc: 'We embed robust governance frameworks into every client engagement  from ESG reporting and board advisory to regulatory compliance and corporate transparency standards aligned with international best practices.',
     points: ['ESG framework development', 'Board governance advisory', 'Regulatory compliance', 'Sustainability reporting (GRI/TCFD)'],
   },
 ];
