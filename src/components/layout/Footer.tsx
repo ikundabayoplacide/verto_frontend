@@ -135,7 +135,7 @@ export function Footer() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand */}
         <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-1">
-          <Link to="/" aria-label="Verto Holdings — Home">
+          <Link to="/" aria-label="Verto Holdings  Home">
             <img
               src={Logo}
               alt="Verto Holdings Ltd"

@@ -17,7 +17,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Who we are", href: "/about" },
   { label: "Services", href: "/services", children: NAV_SERVICES },
   { label: "Sustainability", href: "/sustainability" },
-  { label: "Media", href: "/" },
+  { label: "Media", href: "/media" },
   { label: "Contact", href: "/" },
 ];
 
