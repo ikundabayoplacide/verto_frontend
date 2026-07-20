@@ -23,7 +23,7 @@ export function CTA() {
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Link
-            to="/contact"
+            to="/"
             className="inline-flex items-center gap-2 rounded-full bg-primary-500 hover:bg-primary-400 text-white px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition"
           >
             Get a Free Quote

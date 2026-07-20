@@ -87,7 +87,7 @@ export default function NotFoundPage() {
                   { label: "About Us", href: "/about" },
                   { label: "Services", href: "/services/construction" },
                   { label: "Projects", href: "/projects" },
-                  { label: "Contact", href: "/contact" },
+                  { label: "Contact", href: "/" },
                 ].map((l) => (
                   <Link
                     key={l.href}

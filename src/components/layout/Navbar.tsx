@@ -251,7 +251,7 @@ export function Navbar() {
         {/* Sidebar footer CTA */}
         <div className="px-4 py-5 border-t border-primary-700">
           <Link
-            to="/contact"
+            to="/"
             onClick={() => setMenuOpen(false)}
             className="block w-full text-center px-4 py-3 bg-primary-500 text-secondary-50 text-sm font-bold uppercase tracking-widest hover:bg-primary-400 transition-colors duration-150 rounded-lg"
           >

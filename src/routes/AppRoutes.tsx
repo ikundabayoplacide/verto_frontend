@@ -23,7 +23,7 @@ export default function AppRoutes() {
       <Route path="/services" element={<ServicesPage />} />
       <Route path="/services/:slug" element={<ServicesPage />} />
       <Route path="/sustainability" element={<SustainabilityPage />} />
-      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/" element={<ContactPage />} />
       <Route path="/media" element={<MediaPage />} />
 
       {/* ── Dashboard routes (protected, shared layout) ── */}

@@ -15,7 +15,7 @@ const SERVICES_LINKS = [
 const COMPANY = [
   { label: 'About Us', href: '/about' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Contact',  href: '/contact' },
+  { label: 'Contact',  href: '/' },
 ];
 
 const SOCIALS = [
