@@ -11,42 +11,29 @@ const VIDEOS = [
 
 export function Hero() {
   const [current, setCurrent] = useState(0);
-  const refs = useRef<(HTMLVideoElement | null)[]>([]);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Play first video immediately
-    refs.current[0]?.play().catch(() => {});
-  }, []);
-
-  useEffect(() => {
-    const video = refs.current[current];
+    const video = videoRef.current;
     if (!video) return;
-    video.currentTime = 0;
-    video.play().catch(() => {});
-    const onEnded = () => {
-      const next = (current + 1) % VIDEOS.length;
-      setCurrent(next);
-    };
+    const onEnded = () => setCurrent((c) => (c + 1) % VIDEOS.length);
     video.addEventListener('ended', onEnded);
     return () => video.removeEventListener('ended', onEnded);
   }, [current]);
 
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden">
-      {VIDEOS.map((src, i) => (
-        <video
-          key={src}
-          ref={(el) => { refs.current[i] = el; }}
-          muted
-          playsInline
-          preload="auto"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-            i === current ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <source src={src} type="video/mp4" />
-        </video>
-      ))}
+      <video
+        ref={videoRef}
+        key={VIDEOS[current]}
+        autoPlay
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={VIDEOS[current]} type="video/mp4" />
+        <img src="/images/City.jpg" alt="Verto Holdings" className="w-full h-full object-cover" />
+      </video>
       <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 via-primary-900/60 to-primary-900/30" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-20 md:pt-20 ">
