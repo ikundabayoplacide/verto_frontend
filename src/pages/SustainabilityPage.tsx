@@ -6,6 +6,7 @@ import { SustainabilityHero } from '../components/sections/SustainabilityHero';
 import { SustainabilityPillars } from '../components/sections/SustainabilityPillars';
 import { SustainabilityImpact } from '../components/sections/SustainabilityImpact';
 import { SustainabilityCommitments } from '../components/sections/SustainabilityCommitments';
+import { useGetSustainabilityPillarsQuery, useGetSustainabilityInitiativesQuery, useGetSustainabilityCommitmentsQuery } from '../app/api';
 
 function CTA() {
   return (
@@ -41,13 +42,17 @@ function CTA() {
 }
 
 export default function SustainabilityPage() {
+  const { data: apiPillars } = useGetSustainabilityPillarsQuery();
+  const { data: apiInitiatives } = useGetSustainabilityInitiativesQuery();
+  const { data: apiCommitments } = useGetSustainabilityCommitmentsQuery();
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
       <SustainabilityHero />
-      <SustainabilityPillars />
-      <SustainabilityImpact />
-      <SustainabilityCommitments />
+      <SustainabilityPillars pillars={apiPillars} />
+      <SustainabilityImpact initiatives={apiInitiatives} />
+      <SustainabilityCommitments commitments={apiCommitments} />
       <CTA />
       <Footer />
     </main>

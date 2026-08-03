@@ -11,66 +11,7 @@ interface Highlight {
   featured?: boolean;
 }
 
-const HIGHLIGHTS: Highlight[] = [
-    {
-    img: '/images/cma.jpg',
-    date: 'January 2024',
-    category: 'Capital Markets',
-    title: 'Capital Markets Advisory Programme Launch',
-    excerpt:
-      "Verto Holdings launches a dedicated capital markets advisory stream, supporting enterprises in accessing Rwanda Stock Exchange listings.",
-    body: [
-      "January 2024 marked the official launch of Verto Holdings' Capital Markets Advisory Programme  a structured service offering designed to guide Rwandan companies through the process of accessing public capital markets.",
-      "The programme covers the full lifecycle of a capital markets transaction: from early-stage eligibility assessment and financial structuring, through regulatory compliance with the Rwanda Capital Market Authority (CMA), to post-listing investor relations support.",
-      "Verto Holdings has partnered with legal and accounting professionals to offer an integrated advisory team, reducing friction for businesses that have traditionally found capital markets participation complex and expensive.",
-      "The programme targets SMEs and growth-stage companies, with a particular focus on sectors identified as strategic under Rwanda's National Strategy for Transformation (NST2).",
-    ],
-  },
-  {
-    img: '/images/RDB-1-765x768.png',
-    date: 'March 2024',
-    category: 'Partnership',
-    title: 'Verto Holdings Partners with Rwanda Development Board',
-    excerpt:
-      "A strategic collaboration to strengthen investment advisory services and support Rwanda's Vision 2050 economic transformation goals.",
-    body: [
-      "In March 2024, Verto Holdings formalized a strategic partnership with the Rwanda Development Board (RDB) — a milestone that underscores the firm's commitment to driving Rwanda's economic transformation.",
-      "This collaboration focuses on enhancing investment advisory services for both local and foreign investors, streamlining access to capital markets, and aligning private-sector financial strategies with Rwanda's Vision 2050 agenda.",
-      "The partnership will facilitate joint workshops, investor roadshows, and the development of tailored financial instruments designed to unlock new opportunities in high-growth sectors including agribusiness, ICT, tourism, and infrastructure.",
-      "Verto Holdings CEO, Dr. Munyaneza Joseph, commented: 'This partnership reflects our shared ambition — a prosperous, investment-ready Rwanda that attracts world-class capital and builds lasting prosperity for its citizens.'",
-    ],
-    featured: true,
-  },
 
-  {
-    img: '/images/industries.jpeg',
-    date: 'November 2023',
-    category: 'Industry',
-    title: "Supporting Rwanda's Industrial Sector Growth",
-    excerpt:
-      "Our team delivers financial restructuring and investment facilitation services to key players in Rwanda's growing manufacturing sector.",
-    body: [
-      "Throughout the second half of 2023, Verto Holdings deepened its engagement with Rwanda's industrial and manufacturing sector, delivering tailored financial restructuring advisory to several mid-sized enterprises.",
-      "Key interventions included debt renegotiation, working capital optimization, and the preparation of bankable investment proposals to attract both local and regional institutional investors.",
-      "Verto Holdings also facilitated introductions between manufacturing clients and development finance institutions (DFIs) operating in the East African region, including the African Development Bank and the East African Development Bank.",
-      "This work directly supports Rwanda's ambition to grow its industrial sector's contribution to GDP  a key target under the country's Vision 2050 economic blueprint.",
-    ],
-  },
-  // {
-  //   img: '/images/fince.jpeg',
-  //   date: 'September 2023',
-  //   category: 'Finance',
-  //   title: 'East Africa Finance Summit  Key Takeaways',
-  //   excerpt:
-  //     "Verto Holdings participated in the East Africa Finance Summit, sharing insights on cross-border investment and ESG integration.",
-  //   body: [
-  //     "Verto Holdings took centre stage at the East Africa Finance Summit in September 2023, with Dr. Munyaneza Joseph delivering a keynote address on the evolving landscape of cross-border investment in the region.",
-  //     "Panel discussions covered the integration of Environmental, Social, and Governance (ESG) criteria into investment decision-making  a theme Verto Holdings has championed since its founding.",
-  //     "The summit brought together over 400 finance professionals, regulators, and investors from across East and Central Africa, providing a valuable platform for Verto Holdings to strengthen its regional network and pipeline.",
-  //     "Key takeaways from the summit have been incorporated into Verto Holdings' advisory frameworks, ensuring clients benefit from the latest thinking on sustainable finance, blended finance structures, and regional market trends.",
-  //   ],
-  // },
-];
 
 function NewsModal({ item, onClose }: { item: Highlight; onClose: () => void }) {
   return (
@@ -187,14 +128,16 @@ function NewsCard({ item, index }: { item: Highlight; index: number }) {
   );
 }
 
-export function MediaHighlights() {
-  const [featured, ...rest] = HIGHLIGHTS;
+export function MediaHighlights({ highlights }: { highlights?: any[] }) {
+  if (!highlights?.length) return null;
+  const featured = highlights.find((h) => h.featured) ?? highlights[0];
+  const rest = highlights.filter((h) => h !== featured);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-10 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
-        <div data-reveal className="grid lg:grid-cols-2 gap-10 items-end mb-14">
+        <div data-reveal className="grid lg:grid-cols-2 gap-10 items-end mb-10">
           <div>
             <span className="flex items-center gap-3 mb-4">
               <span aria-hidden="true" className="w-8 h-px bg-accent-500" />

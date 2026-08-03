@@ -1,12 +1,6 @@
-const MILESTONES = [
-  { year: '2018', title: 'Founded',             desc: 'Verto Holdings Ltd established in Kigali with a vision to bridge capital gaps in East Africa.' },
-  { year: '2020', title: 'First Major Mandate', desc: 'Successfully structured and closed the first Rwf 125M green finance deal with FONERWA.' },
-  { year: '2022', title: 'Africa 50 Partnership',desc: 'Became an active partner under the Africa 50 framework for infrastructure finance.' },
-  { year: '2024', title: 'Rwf 954M Milestone',  desc: 'Raised Rwf 954M via KWF for Impexcor Ltd — Green Project in Eastern Province.' },
-  { year: '2025', title: 'Regional Expansion',  desc: 'Expanding advisory footprint across Uganda, Tanzania, and Kenya.' },
-];
-
-export function AboutTimeline() {
+export function AboutTimeline({ milestones: apiMilestones }: { milestones?: any[] }) {
+  if (!apiMilestones?.length) return null;
+  const items = apiMilestones.map((m) => ({ year: m.year, title: m.title, desc: m.description }));
   return (
     <section className="py-8 bg-secondary-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -25,7 +19,7 @@ export function AboutTimeline() {
           <div className="hidden md:block absolute left-1/2 -translate-x-px top-0 bottom-0 w-0.5 bg-accent-200" />
 
           <div className="flex flex-col gap-10">
-            {MILESTONES.map((m, i) => (
+            {items.map((m, i) => (
               <div
                 key={m.year}
                 data-reveal={i % 2 === 0 ? 'left' : 'right'}

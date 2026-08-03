@@ -44,10 +44,10 @@ export function ScrollTop() {
       onClick={handleClick}
       className={[
         'fixed bottom-24 right-5 z-50 w-11 h-11 flex items-center justify-center',
-        'bg-primary-500 text-white shadow-lg shadow-primary-900/40',
+        'bg-primary-900 text-accent-400 rounded-full border border-primary-900 shadow-lg shadow-accent-400/20',
         'transition-all duration-300',
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none',
-        scrolling ? 'scale-90' : 'hover:bg-primary-400 hover:-translate-y-1',
+        scrolling ? 'scale-90' : 'hover:bg-accent-400 hover:text-primary-900 hover:-translate-y-1',
       ].join(' ')}
     >
       {/* Animated arrow — bounces up when scrolling */}

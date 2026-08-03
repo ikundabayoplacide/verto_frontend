@@ -5,19 +5,15 @@ const IMG = {
   quote:     'https://rcb.rw/svgs/Quote.png',
 };
 
-const TESTIMONIALS = [
-  { id: '1', name: 'James Mwangi',  role: 'Property Developer', company: 'Skyline Properties',     portrait: '/images/profile.jpg',  text: 'Verto Holdings delivered outstanding capital raising advisory for our expansion. Their deep understanding of the Rwandan financial market made all the difference.' },
-  { id: '2', name: 'Sarah Kamau',   role: 'CEO',                 company: 'GreenTech Rwanda',        portrait: '/images/profile2.jpeg', text: 'The ESG and sustainable finance guidance from Verto Holdings helped us secure green funding we never thought was accessible. Truly professional team.' },
-  { id: '3', name: 'David Otieno',  role: 'Managing Director',   company: 'TechHub Africa',          portrait: '/images/profile3.jpeg', text: 'Their business plan development and fundraising support gave our company the clarity and investor confidence we needed to grow into new markets.' },
-];
-
-export function Testimonials() {
+export function Testimonials({ testimonials: items }: { testimonials?: any[] }) {
   const [current, setCurrent] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  const safeItems = items ?? [];
+
   const advance = useCallback((d: 1 | -1) => {
-    setCurrent((c) => (c + d + TESTIMONIALS.length) % TESTIMONIALS.length);
-  }, []);
+    setCurrent((c) => (c + d + safeItems.length) % safeItems.length);
+  }, [safeItems.length]);
 
   const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -29,7 +25,9 @@ export function Testimonials() {
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [startTimer]);
 
-  const t = TESTIMONIALS[current];
+  if (!items?.length) return null;
+
+  const t = items[current];
 
   return (
     <section id="testimonials" className="relative py-10 bg-white overflow-hidden">
@@ -41,8 +39,14 @@ export function Testimonials() {
         <div className="grid lg:grid-cols-2 gap-14 items-center">
           {/* Portrait */}
           <div data-reveal="left" className="relative flex justify-center">
-            <div className="relative rounded-full overflow-hidden w-[280px] h-[280px] md:w-[380px] md:h-[380px] ring-8 ring-white shadow-2xl">
-              <img src={t.portrait} alt={t.name} className="w-full h-full object-cover" />
+            <div className="relative rounded-full overflow-hidden w-[280px] h-[280px] md:w-[380px] md:h-[380px] ring-8 ring-white shadow-2xl bg-secondary-100 flex items-center justify-center">
+              {t.portrait ? (
+                <img src={t.portrait} alt={t.name} className="w-full h-full object-cover" />
+              ) : (
+                <svg className="w-32 h-32 md:w-44 md:h-44 text-secondary-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-3.33 0-10 1.67-10 5v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2c0-3.33-6.67-5-10-5Z" />
+                </svg>
+              )}
             </div>
           </div>
 
@@ -74,7 +78,7 @@ export function Testimonials() {
                 </svg>
               </button>
               <div className="flex gap-2 ml-2">
-                {TESTIMONIALS.map((_, i) => (
+                {items.map((_, i) => (
                   <button key={i} type="button" onClick={() => { setCurrent(i); startTimer(); }}
                     className={['h-0.5 transition-all duration-300', i === current ? 'w-8 bg-accent-500' : 'w-4 bg-secondary-300'].join(' ')} />
                 ))}

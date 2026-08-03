@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { SERVICES_DATA } from '../../data/services';
 
 const IMG = {
   footerBg:   'https://rcb.rw/svgs/footer-bg.svg',
   onImgShape: 'https://rcb.rw/svgs/on_image_shape.svg',
 };
 
-export function Services() {
+export function Services({ services: items }: { services?: any[] }) {
+  if (!items?.length) return null;
   return (
     <section id="services" className="relative bg-white overflow-hidden">
       <img src={IMG.footerBg} alt="" className="absolute top-0 inset-x-0 w-full opacity-60 pointer-events-none" />
@@ -27,7 +27,7 @@ export function Services() {
         </div>
 
         <div data-reveal className="grid grid-cols-2 md:grid-cols-4 gap-5">
-          {SERVICES_DATA.slice(0, 4).map((s) => (
+          {items.slice(0, 4).map((s) => (
             <Link key={s.slug} to={`/services/${s.slug}`} className="group relative overflow-hidden aspect-[3/4] block">
               <img src={s.img} alt={s.title} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-900/85 via-primary-900/20 to-transparent" />

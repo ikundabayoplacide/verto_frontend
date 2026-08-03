@@ -44,7 +44,7 @@ export function Table<T extends Record<string, unknown>>({
                 scope="col"
                 onClick={() => handleSort(col)}
                 className={[
-                  'px-4 py-3 text-left text-xs font-semibold text-secondary-400 uppercase tracking-wider',
+                  'px-4 py-3 text-left text-xs font-semibold bg-accent-100 text-secondary-700 uppercase tracking-wider',
                   col.sortable ? 'cursor-pointer hover:text-secondary-200 select-none' : '',
                   col.className ?? '',
                 ].join(' ')}

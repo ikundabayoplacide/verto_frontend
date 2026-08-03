@@ -1,11 +1,5 @@
-const PARTNERS = [
-  { name: 'Capital Market Authority', logo: '/images/cma.jpg' },
-  { name: 'Rwanda Development Board', logo: '/images/rdb.jpeg' },
-  { name: 'University of Lay Adventists of Kigali', logo: '/images/LOGO-ULK.png' },
-
-];
-
-export function AboutPartners() {
+export function AboutPartners({ partners: items }: { partners?: any[] }) {
+  if (!items?.length) return null;
   return (
     <section className="py-8 bg-white border-t border-secondary-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -23,19 +17,21 @@ export function AboutPartners() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6" data-reveal>
-          {PARTNERS.map((p) => (
-            <div
-              key={p.name}
-              className="flex items-center justify-center p-3 rounded-2xl border border-secondary-200 bg-secondary-50 hover:border-accent-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
-            >
-              <img
-                src={p.logo}
-                alt={p.name}
-                className="max-h-32 max-w-full object-contain hover:grayscale-0 transition-all duration-300"
-              />
-            </div>
-          ))}
+        <div className="scroll-container" data-reveal>
+          <div className="scroll-content">
+            {[...items, ...items].map((p, i) => (
+              <div
+                key={`${p.name}-${i}`}
+                className="shrink-0 flex items-center justify-center p-3 rounded-2xl border border-secondary-200 bg-secondary-50 hover:border-accent-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 min-w-[180px]"
+              >
+                <img
+                  src={p.logo}
+                  alt={p.name}
+                  className="max-h-20 max-w-full object-contain hover:grayscale-0 transition-all duration-300"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

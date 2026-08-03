@@ -1,53 +1,21 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useGetServicesQuery } from '../app/api';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { ImigongoPattern } from '../components/common/ImigongoPattern';
+import { Modal } from '../components/ui/Modal';
 import { SERVICES_DATA } from '../data/services';
 
-type Service = typeof SERVICES_DATA[0];
-
-function ServiceModal({ service, onClose }: { service: Service; onClose: () => void }) {
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
-      <div
-        className="relative bg-white rounded-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Left — image */}
-        <div className="md:w-2/5 shrink-0 relative">
-          <img src={service.img} alt={service.title} className="w-full h-56 md:h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 via-transparent to-transparent" />
-          <div className="absolute bottom-4 left-4 right-4">
-            <span className="inline-block bg-accent-500 text-white text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full mb-2">
-              {service.title}
-            </span>
-          </div>
-        </div>
-        {/* Right — description */}
-        <div className="flex flex-col overflow-y-auto p-6 lg:p-8 flex-1">
-          <button onClick={onClose} className="self-end mb-4 text-secondary-400 hover:text-primary-900 transition">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <h2 className="text-2xl font-black text-primary-900 uppercase tracking-tight mb-4">{service.title}</h2>
-          <div className="space-y-3 text-secondary-600 text-sm leading-relaxed mb-6">
-            {service.description.map((p, i) => <p key={i}>{p}</p>)}
-          </div>
-          <ul className="grid grid-cols-2 gap-2 mt-auto">
-            {service.highlights.map((h) => (
-              <li key={h} className="flex items-center gap-2 text-xs text-secondary-700 bg-accent-50 rounded-lg px-3 py-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent-500 shrink-0" />
-                {h}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
+type Service = {
+  id: string;
+  slug: string;
+  title: string;
+  short: string;
+  img: string;
+  description: string[];
+  highlights: string[];
+};
 
 function ServicesHero() {
   return (
@@ -111,12 +79,12 @@ function ServiceCard({ service, index, onOpen }: { service: Service; index: numb
   );
 }
 
-function QuickNav() {
+function QuickNav({ services }: { services: Service[] }) {
   return (
     <div className="bg-primary-900 py-6 sticky top-16 z-30 border-b border-primary-700">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <ul className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-          {SERVICES_DATA.map((s) => (
+          {services.map((s) => (
             <li key={s.slug} className="shrink-0">
               <a
                 href={`#${s.slug}`}
@@ -166,22 +134,53 @@ function CTA() {
 }
 
 export default function ServicesPage() {
+  const { data: services = [] } = useGetServicesQuery();
+  const data: Service[] = services.length ? (services as Service[]) : (SERVICES_DATA as unknown as Service[]);
   const [active, setActive] = useState<Service | null>(null);
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
       <ServicesHero />
-      <QuickNav />
+      <QuickNav services={data} />
       <section className="py-10 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SERVICES_DATA.map((service, i) => (
+          {data.map((service, i) => (
             <ServiceCard key={service.slug} service={service} index={i} onOpen={() => setActive(service)} />
           ))}
         </div>
       </section>
       <CTA />
       <Footer />
-      {active && <ServiceModal service={active} onClose={() => setActive(null)} />}
+      {active && (
+        <Modal open={!!active} onClose={() => setActive(null)} size="xl" title={active.title}>
+          {/* Image banner */}
+          <div className="relative rounded-2xl overflow-hidden h-52 mb-6 -mx-1">
+            <img src={active.img} alt={active.title} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 via-primary-900/20 to-transparent" />
+            <span className="absolute bottom-4 left-4 bg-accent-500 text-white text-xs font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
+              {active.title}
+            </span>
+          </div>
+
+          {/* Description */}
+          <div className="space-y-3 text-secondary-600 text-sm leading-relaxed mb-6">
+            {active.description.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+
+          {/* Highlights */}
+          <div className="border-t border-secondary-100 pt-5">
+            <p className="text-xs font-black text-secondary-400 uppercase tracking-widest mb-3">Key Highlights</p>
+            <ul className="grid grid-cols-2 gap-2">
+              {active.highlights.map((h) => (
+                <li key={h} className="flex items-center gap-2 text-xs text-secondary-700 bg-accent-50 border border-accent-100 rounded-xl px-3 py-2.5 font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-500 shrink-0" />
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Modal>
+      )}
     </main>
   );
 }

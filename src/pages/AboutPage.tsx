@@ -8,18 +8,31 @@ import { AboutTeam } from '../components/sections/AboutTeam';
 import { AboutPartners } from '../components/sections/AboutPartners';
 import { Stats } from '../components/sections/Stats';
 import { CTA } from '../components/sections/CTA';
+import {
+  useGetStatsQuery,
+  useGetCoreValuesQuery,
+  useGetTimelineQuery,
+  useGetTeamQuery,
+  useGetPartnersQuery,
+} from '../app/api';
 
 export default function AboutPage() {
+  const { data: apiStats } = useGetStatsQuery();
+  const { data: apiValues } = useGetCoreValuesQuery();
+  const { data: apiTimeline } = useGetTimelineQuery();
+  const { data: apiTeam } = useGetTeamQuery();
+  const { data: apiPartners } = useGetPartnersQuery();
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
       <AboutHero />
       <AboutMission />
-      <Stats />
-      <AboutValues />
-      <AboutTimeline />
-      <AboutTeam />
-      <AboutPartners />
+      <Stats stats={apiStats} />
+      <AboutValues values={apiValues} />
+      <AboutTimeline milestones={apiTimeline} />
+      <AboutTeam team={apiTeam} />
+      <AboutPartners partners={apiPartners} />
       <CTA />
       <Footer />
     </main>

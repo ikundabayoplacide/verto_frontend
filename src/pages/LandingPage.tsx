@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 import { Hero } from "../components/sections/Hero";
@@ -11,6 +10,11 @@ import { Testimonials } from "../components/sections/Testimonials";
 import { CTA } from "../components/sections/CTA";
 // import { Contact } from "../components/sections/Contact";
 import { Partners } from "../components/sections/Partners";
+import {
+  useGetServicesQuery,
+  useGetTestimonialsQuery,
+  useGetStatsQuery,
+} from "../app/api";
 
 function IconChat() {
   return (
@@ -21,9 +25,13 @@ function IconChat() {
 }
 
 function PlanFab() {
+  const href = `https://wa.me/${'250788359600'}?text=${encodeURIComponent("Hello! I'd like to discuss a project.")}`;
+
   return (
-    <Link
-      to="/contact"
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       id="plan"
       className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-3 rounded-full bg-white shadow-2xl shadow-black/20 border border-secondary-200 px-5 py-3 hover:shadow-black/30 transition-shadow duration-200"
     >
@@ -32,22 +40,26 @@ function PlanFab() {
       </span>
       <span className="text-sm font-semibold text-primary-900">Talk to Us</span>
       <span className="text-[10px] font-semibold uppercase text-accent-600 bg-accent-50 rounded-full px-2 py-0.5">Beta</span>
-    </Link>
+    </a>
   );
 }
 
 export default function LandingPage() {
+  const { data: apiServices } = useGetServicesQuery();
+  const { data: apiTestimonials } = useGetTestimonialsQuery();
+  const { data: apiStats } = useGetStatsQuery();
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
       <Hero />
       <Partners />
       <About />
-      <Stats />
-      <Services />
+      <Stats stats={apiStats} />
+      <Services services={apiServices} />
       <WhyUs />
       {/* <Projects /> */}
-      <Testimonials />
+      <Testimonials testimonials={apiTestimonials} />
       <CTA />
       {/* <Contact /> */}
       <Footer />

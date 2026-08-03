@@ -15,12 +15,6 @@ const FACTS = [
   'Rwf 125M mobilized from Rwanda Green Fund (FONERWA) for ULK renewable energy initiatives (2024)',
   'Active partner under Africa 50 framework  mobilizing infrastructure finance across East Africa since 2022',
 ];
-const STATS = [
-  { value: 15,  suffix: '+', label: 'Years of Experience' },
-  { value: 954, suffix: 'M+', label: 'RWF Raised for Clients (Rwf)' },
-  { value: 98,  suffix: '%', label: 'Client Satisfaction' },
-  { value: 10,  suffix: '+', label: 'Sectors Served' },
-];
 
 function useCountUp(target: number, active: boolean, duration = 2000) {
   const [n, setN] = useState(0);
@@ -39,7 +33,7 @@ function useCountUp(target: number, active: boolean, duration = 2000) {
   return n;
 }
 
-function StatItem({ value, suffix, label, active }: (typeof STATS)[0] & { active: boolean }) {
+function StatItem({ value, suffix, label, active }: { value: number; suffix: string; label: string; active: boolean }) {
   const n = useCountUp(value, active);
   return (
     <div className="flex flex-col items-center text-center px-4">
@@ -52,9 +46,10 @@ function StatItem({ value, suffix, label, active }: (typeof STATS)[0] & { active
   );
 }
 
-export function Stats() {
+export function Stats({ stats: items }: { stats?: any[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
+  if (!items?.length) return null;
 
   useEffect(() => {
     if (!ref.current) return;
@@ -80,7 +75,7 @@ export function Stats() {
           </div>
         </div>
         <div data-reveal className="grid grid-cols-2 lg:grid-cols-4 gap-6 py-8 border-y border-secondary-200">
-          {STATS.map((s) => (
+          {items.map((s) => (
             <StatItem key={s.label} {...s} active={active} />
           ))}
         </div>

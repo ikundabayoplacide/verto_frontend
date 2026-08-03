@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSubmitContactMutation } from '../../app/api';
 import { Alert } from '../ui/Alert';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
@@ -24,8 +25,9 @@ interface FormErrors { name?: string; email?: string; service?: string; message?
 export function Contact() {
   const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '', service: '', message: '' });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [loading, setLoading] = useState(false);
+  const [submit, { isLoading }] = useSubmitContactMutation();
   const [success, setSuccess] = useState(false);
+  const [serverError, setServerError] = useState('');
 
   const validate = (): boolean => {
     const e: FormErrors = {};
@@ -47,11 +49,14 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    setLoading(true);
-    await new Promise(r => setTimeout(r, 1500));
-    setLoading(false);
-    setSuccess(true);
-    setForm({ name: '', email: '', phone: '', service: '', message: '' });
+    try {
+      await submit({ name: form.name, email: form.email, phone: form.phone, subject: form.service, message: form.message }).unwrap();
+      setSuccess(true);
+      setServerError('');
+      setForm({ name: '', email: '', phone: '', service: '', message: '' });
+    } catch {
+      setServerError('Something went wrong. Please try again later.');
+    }
   };
 
   return (
@@ -65,6 +70,9 @@ export function Contact() {
           onDismiss={() => setSuccess(false)}
         />
       )}
+      {serverError && (
+        <Alert type="error" title="Error" message={serverError} dismissible onDismiss={() => setServerError('')} />
+      )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <Input label="Full Name" placeholder="John Doe" value={form.name} onChange={handleChange('name')} error={errors.name} fullWidth required autoComplete="name" />
         <Input label="Phone Number" placeholder="+250 788 359 600" value={form.phone} onChange={handleChange('phone')} fullWidth type="tel" autoComplete="tel" />
@@ -72,7 +80,7 @@ export function Contact() {
       <Input label="Email Address" placeholder="you@example.com" value={form.email} onChange={handleChange('email')} error={errors.email} fullWidth required type="email" autoComplete="email" />
       <Select label="Service of Interest" options={SERVICE_OPTIONS} value={form.service} onChange={handleChange('service')} error={errors.service} fullWidth />
       <Textarea label="Message" placeholder="Tell us about your project or inquiry..." value={form.message} onChange={handleChange('message')} error={errors.message} fullWidth rows={5} />
-      <Button type="submit" variant="primary" size="lg" fullWidth loading={loading}>
+      <Button type="submit" variant="primary" size="lg" fullWidth loading={isLoading}>
         Send Message
       </Button>
     </form>

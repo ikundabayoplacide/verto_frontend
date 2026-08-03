@@ -236,22 +236,14 @@ body::-webkit-scrollbar-thumb   { background: transparent; }
 
 /* ── Google Translate cleanup ── */
 .goog-te-spinner-pos,
-.goog-te-spinner-animation,
-div[style*="background-color: rgb(255, 255, 255)"][style*="border"],
-div[style*="background-color: white"][style*="border"],
-div[style*="box-shadow"][style*="rgba"] {
+.goog-te-spinner-animation {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
 }
 
-body > div[style*="position: absolute"][style*="z-index"],
-body > div[style*="position: fixed"][style*="z-index"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
+
 
 *[onmouseover*="goog"],
 *[onmouseout*="goog"] { pointer-events: none !important; }

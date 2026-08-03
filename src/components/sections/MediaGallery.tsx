@@ -6,22 +6,7 @@ interface GalleryItem {
   category: string;
 }
 
-const GALLERY: GalleryItem[] = [
-  { src: '/images/City.jpeg',      alt: 'Kigali City skyline',             category: 'Rwanda' },
-  { src: '/images/office.jpeg',    alt: 'Verto Holdings office',           category: 'Office' },
-  { src: '/images/industries.jpeg',alt: 'Industry & Business',             category: 'Industry' },
-  { src: '/images/com.jpeg',       alt: 'Commerce & Trade',                category: 'Industry' },
-  { src: '/images/cpm.jpeg',       alt: 'Capital Markets',                 category: 'Finance' },
-  { src: '/images/fince.jpeg',     alt: 'Financial Services',              category: 'Finance' },
-  { src: '/images/bd.jpeg',        alt: 'Business Development',            category: 'Industry' },
-  { src: '/images/rdb.jpeg',       alt: 'Rwanda Development Board Event',  category: 'Events' },
-  { src: '/images/hero-office.jpg',alt: 'Corporate Environment',           category: 'Office' },
-  { src: '/images/home.jpg',       alt: 'Verto Holdings Headquarters',     category: 'Office' },
-  { src: '/images/highlight-financial-services.jpg', alt: 'Financial Advisory Highlight', category: 'Finance' },
-  { src: '/images/highlight-protection.jpg',         alt: 'Asset Protection Highlight',   category: 'Finance' },
-];
 
-const CATEGORIES = ['All', 'Finance', 'Industry', 'Office', 'Rwanda', 'Events'];
 
 function LightboxModal({
   item,
@@ -94,11 +79,13 @@ function LightboxModal({
   );
 }
 
-export function MediaGallery() {
+export function MediaGallery({ items: gallery }: { items?: any[] }) {
   const [active, setActive] = useState('All');
   const [lightbox, setLightbox] = useState<number | null>(null);
 
-  const filtered = active === 'All' ? GALLERY : GALLERY.filter((g) => g.category === active);
+  const categories = ['All', ...new Set((gallery ?? []).map((g) => g.category))];
+  const items = gallery ?? [];
+  const filtered = active === 'All' ? items : items.filter((g) => g.category === active);
 
   const openLightbox = (idx: number) => setLightbox(idx);
   const closeLightbox = () => setLightbox(null);
@@ -108,10 +95,10 @@ export function MediaGallery() {
     setLightbox((i) => (i === null ? null : (i + 1) % filtered.length));
 
   return (
-    <section className="py-10 bg-white">
+    <section className="py-2 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
-        <div data-reveal className="grid lg:grid-cols-2 gap-10 items-end mb-12">
+        <div data-reveal className="grid lg:grid-cols-2 gap-10 items-end mb-8">
           <div>
             <span className="flex items-center gap-3 mb-4">
               <span aria-hidden="true" className="w-8 h-px bg-accent-500" />
@@ -128,7 +115,7 @@ export function MediaGallery() {
 
         {/* Filter tabs */}
         <div data-reveal className="flex flex-wrap gap-2 mb-10">
-          {CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <button
               key={cat}
               type="button"

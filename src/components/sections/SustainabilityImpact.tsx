@@ -1,35 +1,7 @@
-const IMPACTS = [
-  { value: 'Rwf 954M+', label: 'Green Finance Raised', desc: 'Via KWF for Impexcor Ltd Green Project, Eastern Province (2025)' },
-  { value: 'Rwf 125M',  label: 'FONERWA Funding',      desc: 'Mobilized for ULK renewable energy initiatives (2024)' },
-  { value: 'Africa 50', label: 'Infrastructure Partner',desc: 'Active partner mobilizing infrastructure finance across East Africa since 2022' },
-  { value: '10+',       label: 'Sectors Impacted',     desc: 'Across agriculture, energy, finance, and real estate' },
-];
-
-const INITIATIVES = [
-  {
-    img: '/images/fince.jpeg',
-    tag: 'Green Finance',
-    title: 'KWF Green Project — Impexcor Ltd',
-    desc: 'Structured and closed a Rwf 954M green finance facility through KWF for a large-scale green project in Rwanda\'s Eastern Province, supporting climate-resilient agriculture and export competitiveness.',
-    year: '2025',
-  },
-  {
-    img: '/images/industries.jpeg',
-    tag: 'Renewable Energy',
-    title: 'FONERWA — ULK Renewable Energy',
-    desc: 'Mobilized Rwf 125M from the Rwanda Green Fund (FONERWA) to finance renewable energy initiatives at the University of Lay Adventists of Kigali, reducing carbon footprint and energy costs.',
-    year: '2024',
-  },
-  {
-    img: '/images/City.jpg',
-    tag: 'Infrastructure',
-    title: 'Africa 50 Infrastructure Finance',
-    desc: 'Active partner under the Africa 50 framework  mobilizing long-term infrastructure finance across East Africa, with a focus on sustainable, high-impact projects aligned with the African Development Bank\'s priorities.',
-    year: '2022–Present',
-  },
-];
-
-export function SustainabilityImpact() {
+export function SustainabilityImpact({ initiatives: apiInitiatives }: { initiatives?: any[] }) {
+  const allInitiatives = apiInitiatives ?? [];
+  const impacts = allInitiatives.filter((i: any) => i.type === 'impact');
+  const projects = allInitiatives.filter((i: any) => i.type === 'project');
   return (
     <section className="py-12 bg-primary-900 relative overflow-hidden">
       {/* Subtle dot grid */}
@@ -55,7 +27,7 @@ export function SustainabilityImpact() {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {IMPACTS.map((item, i) => (
+          {impacts.map((item: any, i: number) => (
             <div
               key={item.label}
               data-reveal
@@ -64,7 +36,7 @@ export function SustainabilityImpact() {
             >
               <div className="text-3xl md:text-4xl font-black text-accent-400 mb-2">{item.value}</div>
               <div className="text-sm font-bold text-white mb-2">{item.label}</div>
-              <p className="text-xs text-secondary-400 leading-relaxed">{item.desc}</p>
+              <p className="text-xs text-secondary-400 leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>
@@ -81,15 +53,15 @@ export function SustainabilityImpact() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {INITIATIVES.map((item, i) => (
+          {projects.map((item: any, i: number) => (
             <div
-              key={item.title}
-              data-reveal
-              style={{ transitionDelay: `${i * 100}ms` }}
-              className="group bg-primary-800/40 border border-primary-700 rounded-2xl overflow-hidden hover:border-accent-500 transition-all duration-300 hover:-translate-y-1"
-            >
+            key={item.label}
+            data-reveal
+            style={{ transitionDelay: `${i * 100}ms` }}
+            className="group bg-primary-800/40 border border-primary-700 rounded-2xl overflow-hidden hover:border-accent-500 transition-all duration-300 hover:-translate-y-1"
+          >
               <div className="relative aspect-video overflow-hidden">
-                <img src={item.img} alt={item.title} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+                <img src={item.img} alt={item.label} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-transparent to-transparent" />
                 <span className="absolute top-3 left-3 px-3 py-1 text-xs font-bold uppercase tracking-widest bg-accent-500 text-white rounded-full">
                   {item.tag}
@@ -99,8 +71,8 @@ export function SustainabilityImpact() {
                 </span>
               </div>
               <div className="p-6">
-                <h3 className="text-base font-black text-white mb-3 leading-snug">{item.title}</h3>
-                <p className="text-sm text-secondary-400 leading-relaxed">{item.desc}</p>
+                <h3 className="text-base font-black text-white mb-3 leading-snug">{item.label}</h3>
+                <p className="text-sm text-secondary-400 leading-relaxed">{item.description}</p>
               </div>
             </div>
           ))}
