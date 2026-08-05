@@ -118,9 +118,15 @@ export function DashboardLayout() {
             </button>
 
             {/* User pill */}
-            <div className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-lg bg-secondary-50 border border-secondary-200">
+            <button
+              type="button"
+              aria-label="Open profile"
+              title="My profile"
+              onClick={() => navigate('/dashboard/profile')}
+              className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-lg bg-secondary-50 border border-secondary-200 hover:border-primary-400 transition-colors"
+            >
               <Avatar initials={userInitials} size="xs" />
-              <div className="hidden sm:block leading-tight">
+              <div className="hidden sm:block leading-tight text-left">
                 <p className="text-xs font-semibold text-secondary-700 leading-none">
                   {user?.name ?? 'Admin'}
                 </p>
@@ -131,7 +137,7 @@ export function DashboardLayout() {
                   {user?.role ?? 'admin'}
                 </p>
               </div>
-            </div>
+            </button>
 
             {/* Logout */}
             <button
