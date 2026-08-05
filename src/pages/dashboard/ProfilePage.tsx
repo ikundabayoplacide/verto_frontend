@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FiLock, FiSave, FiUser } from 'react-icons/fi';
+import { FiLock, FiSave } from 'react-icons/fi';
 import { useUpdateMeMutation } from '../../app/api';
 import { selectCurrentUser, setCredentials } from '../../app/authSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
