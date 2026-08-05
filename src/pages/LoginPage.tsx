@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FiCheckCircle, FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useLoginMutation } from '../app/api';
 import { setCredentials } from '../app/authSlice';
 import { useAppDispatch } from '../app/hooks';
@@ -55,6 +55,17 @@ export default function LoginPage() {
     >
       {/* Dark overlay so the card pops */}
       <div className="absolute inset-0 bg-primary-900/65 backdrop-blur-[2px]" aria-hidden="true" />
+
+      {/* Back to home */}
+      <Link
+        to="/"
+        className="absolute top-5 left-5 z-20 inline-flex items-center gap-2 rounded-full bg-white/90 hover:bg-white text-primary-900 text-sm font-semibold px-4 py-2 shadow-lg backdrop-blur transition-colors"
+      >
+        <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Back to Home
+      </Link>
 
       {/* ── Card shell — never taller than the viewport ── */}
       <div
