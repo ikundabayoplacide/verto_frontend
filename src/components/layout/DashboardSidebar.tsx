@@ -15,6 +15,7 @@ import {
     FiMessageSquare,
     FiSettings,
     FiStar,
+    FiUser,
     FiUsers,
 } from 'react-icons/fi';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -73,6 +74,7 @@ const SECTIONS: SidebarSection[] = [
   {
     title: 'System',
     items: [
+      { label: 'Profile', href: '/dashboard/profile', icon: <FiUser /> },
       { label: 'Notifications', href: '/dashboard/notifications', icon: <FiBell /> },
       {
         label: 'Settings',

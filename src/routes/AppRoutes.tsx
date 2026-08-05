@@ -4,10 +4,12 @@ import { ProtectedRoute } from "../components/common/ProtectedRoute.tsx";
 import { DashboardLayout } from "../components/layout/DashboardLayout.tsx";
 import AboutPage from "../pages/AboutPage.tsx";
 import ContactPage from "../pages/ContactPage.tsx";
+import ForgotPasswordPage from "../pages/ForgotPasswordPage.tsx";
 import LandingPage from "../pages/LandingPage.tsx";
 import LoginPage from "../pages/LoginPage.tsx";
 import MediaPage from "../pages/MediaPage.tsx";
 import NotFoundPage from "../pages/NotFoundPage.tsx";
+import ResetPasswordPage from "../pages/ResetPasswordPage.tsx";
 import ServicesPage from "../pages/ServicesPage.tsx";
 import SustainabilityPage from "../pages/SustainabilityPage.tsx";
 import AnalyticsPage from "../pages/dashboard/AnalyticsPage.tsx";
@@ -16,6 +18,7 @@ import DashboardHome from "../pages/dashboard/DashboardHome.tsx";
 import DashboardMediaPage from "../pages/dashboard/MediaPage.tsx";
 import DashboardServicesPage from "../pages/dashboard/ServicesPage.tsx";
 import PartnersPage from "../pages/dashboard/PartnersPage.tsx";
+import ProfilePage from "../pages/dashboard/ProfilePage.tsx";
 import StatsPage from "../pages/dashboard/StatsPage.tsx";
 import TeamPage from "../pages/dashboard/TeamPage.tsx";
 import TestimonialsPage from "../pages/dashboard/TestimonialsPage.tsx";
@@ -51,6 +54,8 @@ export default function AppRoutes() {
       <Route path="/contact"        element={<ContactPage />} />
       <Route path="/media"          element={<MediaPage />} />
       <Route path="/login"          element={<LoginPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
 
       {/* ── Dashboard — single layout, role guard per route ── */}
       <Route element={<ProtectedRoute allowedRoles={["admin", "editor"]} />}>
@@ -58,6 +63,7 @@ export default function AppRoutes() {
 
           {/* admin + editor */}
           <Route index                 element={<DashboardHome />} />
+          <Route path="profile"        element={<ProfilePage />} />
           <Route path="services"       element={<DashboardServicesPage />} />
           <Route path="team"           element={<TeamPage />} />
           <Route path="testimonials"   element={<TestimonialsPage />} />
