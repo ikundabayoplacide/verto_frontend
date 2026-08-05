@@ -25,7 +25,7 @@ function IconChat() {
 }
 
 function PlanFab() {
-  const href = `https://wa.me/${'250788359600'}?text=${encodeURIComponent("Hello! I'd like to discuss a project.")}`;
+  const href = `https://wa.me/${"250784646459"}?text=${encodeURIComponent("Hello! I'd like to discuss a project.")}`;
 
   return (
     <a

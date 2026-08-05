@@ -3,23 +3,13 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from '../../assets/Logo.png';
 import { ImigongoPattern } from '../common/ImigongoPattern';
 import { SERVICES_DATA } from '../../data/services';
+import { useGetServicesQuery } from '../../app/api';
 
 interface NavItem {
   label: string;
   href: string;
   children?: { label: string; href: string }[];
 }
-
-const NAV_SERVICES = SERVICES_DATA.map(s => ({ label: s.title, href: `/services/${s.slug}` }));
-
-const NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Who we are", href: "/about" },
-  { label: "Services", href: "/services", children: NAV_SERVICES },
-  { label: "Sustainability", href: "/sustainability" },
-  { label: "Media", href: "/media" },
-  { label: "Contact", href: "/contact" },
-];
 
 export function Navbar() {
   const [scrolled,    setScrolled]    = useState(false);
@@ -28,6 +18,19 @@ export function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
   const isHome = location.pathname === '/';
+
+  const { data: apiServices = [] } = useGetServicesQuery();
+  const services = apiServices.length ? apiServices : SERVICES_DATA;
+  const navServices = services.map(s => ({ label: s.title, href: `/services/${s.slug}` }));
+
+  const NAV_ITEMS: NavItem[] = [
+    { label: "Home", href: "/" },
+    { label: "Who we are", href: "/about" },
+    { label: "Services", href: "/services", children: navServices },
+    { label: "Sustainability", href: "/sustainability" },
+    { label: "Media", href: "/media" },
+    { label: "Contact", href: "/contact" },
+  ];
 
   useEffect(() => { setMenuOpen(false); setDropdownKey(null); }, [location.pathname]);
 

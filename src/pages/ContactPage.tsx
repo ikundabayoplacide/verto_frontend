@@ -11,7 +11,7 @@ const INFO = [
       </svg>
     ),
     label: 'Office',
-    value: '	Nyamata, Bugesera District, Eastern  Province, Rwanda',
+    value: 'CoK, KICUKIRO, SONATUBE',
     href: undefined,
   },
   {
@@ -128,7 +128,7 @@ export default function ContactPage() {
             <div className="relative rounded-2xl overflow-hidden border border-secondary-200 shadow-lg" style={{ height: '410px' }}>
               <iframe
                 title="Verto Holdings Location"
-                src="https://www.google.com/maps?q=Nyamata,+Bugesera+District,+Eastern+Province,+Rwanda&z=14&output=embed"
+                src="https://www.google.com/maps?q=SONATUBE,+Kicukiro,+Kigali,+Rwanda&z=14&output=embed"
                 width="100%"
                 height="100%"
                 className="absolute inset-0 w-full h-full"
@@ -137,7 +137,7 @@ export default function ContactPage() {
               />
               <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm rounded-xl px-3 py-2 pointer-events-none shadow">
                 <p className="text-xs font-bold text-accent-600 uppercase tracking-widest">Verto Holdings Ltd</p>
-                <p className="text-xs text-secondary-500 mt-0.5">Nyamata, Bugesera District, Eastern Province</p>
+                <p className="text-xs text-secondary-500 mt-0.5">CoK, KICUKIRO, SONATUBE</p>
               </div>
             </div>
           </div>

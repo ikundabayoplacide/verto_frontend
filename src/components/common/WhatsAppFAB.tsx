@@ -1,5 +1,5 @@
 /** Floating WhatsApp button — fixed bottom-right */
-export function WhatsAppFAB({ phone = '250788359600', message = '' }: { phone?: string; message?: string }) {
+export function WhatsAppFAB({ phone = '250784646459', message = '' }: { phone?: string; message?: string }) {
   const href = `https://wa.me/${phone}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
 
   return (

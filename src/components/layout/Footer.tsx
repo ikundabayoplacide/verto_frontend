@@ -1,16 +1,8 @@
 
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/Logo.png';
-
-const SERVICES_LINKS = [
-  { label: 'Capital Raising',           href: '/services/capital-raising' },
-  { label: 'Business Plan Development', href: '/services/business-plan' },
-  { label: 'Asset Management',          href: '/services/asset-management' },
-  // { label: 'Corporate Finance',         href: '/services/corporate-finance' },
-  // { label: 'Private Equity',            href: '/services/private-equity' },
-  // { label: 'Sustainable Finance',       href: '/services/esg-sustainable-finance' },
-  // { label: 'Commodity Trading',         href: '/services/commodities-trading' },
-];
+import { useGetServicesQuery } from '../../app/api';
+import { SERVICES_DATA } from '../../data/services';
 
 const COMPANY = [
   { label: 'About Us', href: '/about' },
@@ -123,6 +115,10 @@ export function ImigongoPattern() {
 export function Footer() {
   const year = new Date().getFullYear();
 
+  const { data: apiServices = [] } = useGetServicesQuery();
+  const services = apiServices.length ? apiServices : SERVICES_DATA;
+  const servicesLinks = services.slice(0, 3).map(s => ({ label: s.title, href: `/services/${s.slug}` }));
+
 
 
   return (
@@ -171,7 +167,7 @@ export function Footer() {
             Services
           </h3>
           <ul className="flex flex-col gap-2" role="list">
-            {SERVICES_LINKS.map((s) => (
+            {servicesLinks.map((s) => (
               <li key={s.href}>
                 <Link
                   to={s.href}
@@ -229,7 +225,7 @@ export function Footer() {
                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
-              <span>KG 9 Ave, Nyarugenge, Kigali</span>
+              <span>CoK, KICUKIRO, SONATUBE</span>
             </li>
             <li className="flex items-start gap-2.5 text-sm text-secondary-100">
               <svg

@@ -1,4 +1,6 @@
-const REASONS = [
+import { useGetCoreValuesQuery } from '../../app/api';
+
+const DEFAULT_REASONS = [
   {
     num: '01',
     title: 'Integrity',
@@ -41,7 +43,19 @@ const REASONS = [
   },
 ];
 
+const REASON_ICONS = DEFAULT_REASONS.map(r => r.icon);
+
 export function WhyUs() {
+  const { data: apiValues = [] } = useGetCoreValuesQuery();
+  const items = apiValues.length
+    ? apiValues.map((v, i) => ({
+        num: String(i + 1).padStart(2, '0'),
+        title: v.title,
+        desc: v.description,
+        icon: REASON_ICONS[i % REASON_ICONS.length],
+      }))
+    : DEFAULT_REASONS;
+
   return (
     <section id="why-us" className="relative  bg-secondary-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mt-6 mb-4 lg:px-10 relative">
@@ -56,7 +70,7 @@ export function WhyUs() {
         </div>
 
         <div data-reveal className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {REASONS.map((r) => (
+          {items.map((r) => (
             <div
               key={r.num}
               className="group flex flex-col gap-5 bg-white rounded-2xl p-7 border border-secondary-200 hover:border-accent-400 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
