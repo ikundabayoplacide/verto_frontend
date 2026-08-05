@@ -9,6 +9,7 @@ import LandingPage from "../pages/LandingPage.tsx";
 import LoginPage from "../pages/LoginPage.tsx";
 import MediaPage from "../pages/MediaPage.tsx";
 import NotFoundPage from "../pages/NotFoundPage.tsx";
+import OurTeamPage from "../pages/OurTeamPage.tsx";
 import ResetPasswordPage from "../pages/ResetPasswordPage.tsx";
 import ServicesPage from "../pages/ServicesPage.tsx";
 import SustainabilityPage from "../pages/SustainabilityPage.tsx";
@@ -48,6 +49,7 @@ export default function AppRoutes() {
       {/* ── Public ── */}
       <Route path="/"               element={<LandingPage />} />
       <Route path="/about"          element={<AboutPage />} />
+      <Route path="/our-team"       element={<OurTeamPage />} />
       <Route path="/services"       element={<ServicesPage />} />
       <Route path="/services/:slug" element={<ServicesPage />} />
       <Route path="/sustainability"  element={<SustainabilityPage />} />

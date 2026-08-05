@@ -25,7 +25,14 @@ export function Navbar() {
 
   const NAV_ITEMS: NavItem[] = [
     { label: "Home", href: "/" },
-    { label: "Who we are", href: "/about" },
+    {
+      label: "Who we are",
+      href: "/about",
+      children: [
+        { label: "About Us", href: "/about" },
+        { label: "Our Team", href: "/our-team" },
+      ],
+    },
     { label: "Services", href: "/services", children: navServices },
     { label: "Sustainability", href: "/sustainability" },
     { label: "Media", href: "/media" },
