@@ -49,7 +49,6 @@ function StatItem({ value, suffix, label, active }: { value: number; suffix: str
 export function Stats({ stats: items }: { stats?: any[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
-  if (!items?.length) return null;
 
   useEffect(() => {
     if (!ref.current) return;
@@ -60,6 +59,8 @@ export function Stats({ stats: items }: { stats?: any[] }) {
     observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
+
+  if (!items?.length) return null;
 
   return (
     <section ref={ref} className="relative py-10 overflow-hidden bg-white">
