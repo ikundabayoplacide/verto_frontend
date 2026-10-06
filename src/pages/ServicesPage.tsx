@@ -1,11 +1,9 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { useGetServicesQuery } from '../app/api';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { ImigongoPattern } from '../components/common/ImigongoPattern';
-import { Modal } from '../components/ui/Modal';
-import { SERVICES_DATA } from '../data/services';
 
 type Service = {
   id: string;
@@ -41,7 +39,7 @@ function ServicesHero() {
   );
 }
 
-function ServiceCard({ service, index, onOpen }: { service: Service; index: number; onOpen: () => void }) {
+function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
     <div
       id={service.slug}
@@ -65,17 +63,91 @@ function ServiceCard({ service, index, onOpen }: { service: Service; index: numb
             </li>
           ))}
         </ul>
-        <button
-          onClick={onOpen}
+        <Link
+          to={`/services/${service.slug}`}
           className="self-start inline-flex items-center gap-2 rounded-full bg-accent-500 hover:bg-accent-400 text-white px-4 py-2 font-bold text-xs uppercase tracking-widest transition"
         >
           Learn More
           <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </button>
+        </Link>
       </div>
     </div>
+  );
+}
+
+function ServiceDetail({ service, services }: { service: Service; services: Service[] }) {
+  const related = services.filter((item) => item.slug !== service.slug).slice(0, 3);
+
+  return (
+    <>
+      <section className="relative min-h-[58vh] flex items-end overflow-hidden bg-primary-950">
+        <img src={service.img} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/95 via-primary-900/75 to-primary-900/60" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-20 pt-36 lg:px-10">
+          <Link to="/services" className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-white/80 transition hover:text-accent-300">
+            <span aria-hidden="true">←</span> All services
+          </Link>
+          <p className="mb-4 text-xs font-black uppercase tracking-[0.24em] text-accent-400">Verto Holdings · Advisory</p>
+          <h1 className="max-w-4xl text-4xl font-black uppercase leading-[0.98] tracking-tight text-white md:text-6xl lg:text-7xl">{service.title}</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">{service.short}</p>
+          <Link to="/contact" className="mt-8 inline-flex items-center gap-3 rounded-full bg-accent-500 px-6 py-3 font-bold text-white transition hover:bg-accent-400">
+            Talk to our team <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+        <svg viewBox="0 0 1440 70" className="absolute bottom-0 inset-x-0 w-full text-white" preserveAspectRatio="none" aria-hidden="true">
+          <polygon points="0,70 0,36 360,55 720,16 1080,48 1440,8 1440,70" fill="currentColor" />
+        </svg>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:px-10">
+          <article>
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.2em] text-accent-600">How we help</p>
+            <h2 className="mb-8 text-3xl font-black uppercase tracking-tight text-primary-900 md:text-4xl">Strategy built around your goals</h2>
+            <div className="space-y-5 text-base leading-8 text-secondary-600">
+              {service.description.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            </div>
+          </article>
+          {service.highlights?.length > 0 && <aside className="h-fit rounded-3xl border border-secondary-200 bg-primary-50 p-7 md:p-8">
+            <span className="mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent-500 text-xl font-black text-white">V</span>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-accent-600">What we deliver</p>
+            <h2 className="mt-2 text-2xl font-black text-primary-900">Key capabilities</h2>
+            <ul className="mt-6 space-y-4">
+              {service.highlights.map((highlight, index) => (
+                <li key={highlight} className="flex gap-3 text-sm font-medium leading-relaxed text-secondary-700">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-[10px] font-black text-accent-600">{String(index + 1).padStart(2, '0')}</span>
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+            <Link to="/contact" className="mt-8 inline-flex w-full items-center justify-center rounded-xl bg-primary-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-800">Discuss your needs</Link>
+          </aside>}
+        </div>
+      </section>
+
+      {related.length > 0 && (
+        <section className="bg-primary-50 py-16 md:py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-10">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-accent-600">Explore more</p>
+            <div className="mb-8 mt-2 flex flex-wrap items-end justify-between gap-4">
+              <h2 className="text-3xl font-black uppercase tracking-tight text-primary-900">Related services</h2>
+              <Link to="/services" className="text-sm font-bold text-primary-700 hover:text-accent-600">View all services →</Link>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {related.map((item) => (
+                <Link key={item.slug} to={`/services/${item.slug}`} className="group rounded-2xl border border-secondary-200 bg-white p-6 transition hover:-translate-y-1 hover:border-accent-400 hover:shadow-lg">
+                  <h3 className="font-black uppercase tracking-tight text-primary-900 group-hover:text-accent-600">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-secondary-500">{item.short}</p>
+                  <span className="mt-5 inline-block text-xs font-black uppercase tracking-widest text-accent-600">Learn more →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 }
 
@@ -134,53 +206,44 @@ function CTA() {
 }
 
 export default function ServicesPage() {
+  const { slug } = useParams<{ slug: string }>();
   const { data: services = [] } = useGetServicesQuery();
-  const data: Service[] = services.length ? (services as Service[]) : (SERVICES_DATA as unknown as Service[]);
-  const [active, setActive] = useState<Service | null>(null);
+  const data = services as Service[];
+  const selected = slug ? data.find((service) => service.slug === slug) : undefined;
+
+  useEffect(() => {
+    if (selected) document.title = `${selected.title} | Verto Holdings`;
+    else document.title = 'Our Services | Verto Holdings';
+  }, [selected]);
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      <ServicesHero />
-      <QuickNav services={data} />
-      <section className="py-10 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {data.map((service, i) => (
-            <ServiceCard key={service.slug} service={service} index={i} onOpen={() => setActive(service)} />
-          ))}
-        </div>
-      </section>
+      {selected ? (
+        <ServiceDetail service={selected} services={data} />
+      ) : slug ? (
+        <section className="min-h-[70vh] px-6 pt-40 text-center">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-accent-600">Service not found</p>
+          <h1 className="mt-3 text-4xl font-black text-primary-900">We couldn’t find that service.</h1>
+          <Link to="/services" className="mt-6 inline-flex rounded-full bg-accent-500 px-6 py-3 font-bold text-white">Browse all services</Link>
+        </section>
+      ) : (
+        <>
+          <ServicesHero />
+          {data.length > 0 && <QuickNav services={data} />}
+          <section className="py-10 bg-white">
+            {data.length > 0 ? (
+              <div className="max-w-7xl mx-auto px-6 lg:px-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {data.map((service, i) => <ServiceCard key={service.slug} service={service} index={i} />)}
+              </div>
+            ) : (
+              <p className="mx-auto max-w-7xl px-6 py-12 text-center text-secondary-500 lg:px-10">No services are available right now.</p>
+            )}
+          </section>
+        </>
+      )}
       <CTA />
       <Footer />
-      {active && (
-        <Modal open={!!active} onClose={() => setActive(null)} size="xl" title={active.title}>
-          {/* Image banner */}
-          <div className="relative rounded-2xl overflow-hidden h-52 mb-6 -mx-1">
-            <img src={active.img} alt={active.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 via-primary-900/20 to-transparent" />
-            <span className="absolute bottom-4 left-4 bg-accent-500 text-white text-xs font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
-              {active.title}
-            </span>
-          </div>
-
-          {/* Description */}
-          <div className="space-y-3 text-secondary-600 text-sm leading-relaxed mb-6">
-            {active.description.map((p, i) => <p key={i}>{p}</p>)}
-          </div>
-
-          {/* Highlights */}
-          <div className="border-t border-secondary-100 pt-5">
-            <p className="text-xs font-black text-secondary-400 uppercase tracking-widest mb-3">Key Highlights</p>
-            <ul className="grid grid-cols-2 gap-2">
-              {active.highlights.map((h) => (
-                <li key={h} className="flex items-center gap-2 text-xs text-secondary-700 bg-accent-50 border border-accent-100 rounded-xl px-3 py-2.5 font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-500 shrink-0" />
-                  {h}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Modal>
-      )}
     </main>
   );
 }

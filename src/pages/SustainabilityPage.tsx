@@ -21,7 +21,7 @@ function CTA() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link
-            to="/"
+            to="/contact"
             className="inline-flex items-center gap-3 rounded-full bg-accent-500 hover:bg-accent-400 text-white px-7 py-3.5 font-bold text-sm uppercase tracking-widest shadow-lg shadow-accent-900/20 transition"
           >
             Get ESG Advisory
@@ -30,7 +30,7 @@ function CTA() {
             </svg>
           </Link>
           <Link
-            to="/services/esg-sustainable-finance"
+            to="/services"
             className="inline-flex items-center gap-3 rounded-full border border-accent-500 text-accent-600 hover:bg-accent-500 hover:text-white px-7 py-3.5 font-bold text-sm uppercase tracking-widest transition"
           >
             Our ESG Services

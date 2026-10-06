@@ -38,22 +38,44 @@ export function AboutValues({ values: apiValues }: { values?: any[] }) {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((v, i) => (
-            <div
-              key={v.title}
-              data-reveal
-              style={{ transitionDelay: `${i * 100}ms` }}
-              className="group bg-primary-800/60 border border-primary-700 hover:border-accent-500 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="w-14 h-14 rounded-xl bg-primary-700 group-hover:bg-accent-500 flex items-center justify-center text-primary-300 group-hover:text-white transition-colors duration-300 mb-5">
-                {v.icon}
-              </div>
-              <h3 className="text-lg font-bold text-white mb-3">{v.title}</h3>
-              <p className="text-sm text-secondary-400 leading-relaxed">{v.desc}</p>
+        {items.length > 4 ? (
+          <div className="scroll-container" data-reveal>
+            <div className="scroll-content">
+              {[...items, ...items].map((v, i) => (
+                <div
+                  key={`${v.title}-${i}`}
+                  aria-hidden={i >= items.length}
+                  className="group relative w-[280px] shrink-0 bg-primary-800/60 border border-primary-700 hover:border-accent-500 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1"
+                >
+                  <span className="absolute right-6 top-6 text-xs font-black tracking-widest text-accent-400">{String((i % items.length) + 1).padStart(2, '0')}</span>
+                  <div className="w-14 h-14 rounded-xl bg-primary-700 group-hover:bg-accent-500 flex items-center justify-center text-primary-300 group-hover:text-white transition-colors duration-300 mb-5">
+                    {v.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">{v.title}</h3>
+                  <p className="text-sm text-secondary-400 leading-relaxed">{v.desc}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {items.map((v, i) => (
+              <div
+                key={v.title}
+                data-reveal
+                style={{ transitionDelay: `${i * 100}ms` }}
+                className="group relative bg-primary-800/60 border border-primary-700 hover:border-accent-500 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1"
+              >
+                <span className="absolute right-6 top-6 text-xs font-black tracking-widest text-accent-400">{String(i + 1).padStart(2, '0')}</span>
+                <div className="w-14 h-14 rounded-xl bg-primary-700 group-hover:bg-accent-500 flex items-center justify-center text-primary-300 group-hover:text-white transition-colors duration-300 mb-5">
+                  {v.icon}
+                </div>
+                <h3 className="text-lg font-bold text-white mb-3">{v.title}</h3>
+                <p className="text-sm text-secondary-400 leading-relaxed">{v.desc}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

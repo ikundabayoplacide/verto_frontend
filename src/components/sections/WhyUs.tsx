@@ -69,25 +69,47 @@ export function WhyUs() {
           </h2>
         </div>
 
-        <div data-reveal className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((r) => (
-            <div
-              key={r.num}
-              className="group flex flex-col gap-5 bg-white rounded-2xl p-7 border border-secondary-200 hover:border-accent-400 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="flex items-center justify-between">
-                <div className="w-14 h-14 rounded-xl bg-accent-50 border border-accent-100 flex items-center justify-center text-accent-600 group-hover:bg-accent-500 group-hover:text-white group-hover:border-accent-500 transition-colors duration-300">
-                  {r.icon}
+        {items.length > 4 ? (
+          <div data-reveal className="scroll-container">
+            <div className="scroll-content">
+              {[...items, ...items].map((r, i) => (
+                <div
+                  key={`${r.num}-${i}`}
+                  aria-hidden={i >= items.length}
+                  className="group flex w-[280px] shrink-0 flex-col gap-5 rounded-2xl border border-secondary-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent-400 hover:shadow-lg"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-accent-100 bg-accent-50 text-accent-600 transition-colors duration-300 group-hover:border-accent-500 group-hover:bg-accent-500 group-hover:text-white">
+                      {r.icon}
+                    </div>
+                    <span className="text-3xl font-black tabular-nums text-secondary-100">{r.num}</span>
+                  </div>
+                  <div>
+                    <h3 className="mb-2 text-base font-black uppercase tracking-wide text-primary-900">{r.title}</h3>
+                    <p className="text-sm leading-relaxed text-secondary-500">{r.desc}</p>
+                  </div>
                 </div>
-                <span className="text-3xl font-black text-secondary-100 tabular-nums">{r.num}</span>
-              </div>
-              <div>
-                <h3 className="text-base font-black text-primary-900 uppercase tracking-wide mb-2">{r.title}</h3>
-                <p className="text-sm text-secondary-500 leading-relaxed">{r.desc}</p>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div data-reveal className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {items.map((r) => (
+              <div key={r.num} className="group flex flex-col gap-5 rounded-2xl border border-secondary-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent-400 hover:shadow-lg">
+                <div className="flex items-center justify-between">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-accent-100 bg-accent-50 text-accent-600 transition-colors duration-300 group-hover:border-accent-500 group-hover:bg-accent-500 group-hover:text-white">
+                    {r.icon}
+                  </div>
+                  <span className="text-3xl font-black tabular-nums text-secondary-100">{r.num}</span>
+                </div>
+                <div>
+                  <h3 className="mb-2 text-base font-black uppercase tracking-wide text-primary-900">{r.title}</h3>
+                  <p className="text-sm leading-relaxed text-secondary-500">{r.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

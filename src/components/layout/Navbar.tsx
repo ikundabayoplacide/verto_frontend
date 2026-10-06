@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from '../../assets/Logo.png';
 import { ImigongoPattern } from '../common/ImigongoPattern';
-import { SERVICES_DATA } from '../../data/services';
 import { useGetServicesQuery } from '../../app/api';
 
 interface NavItem {
@@ -20,8 +19,7 @@ export function Navbar() {
   const isHome = location.pathname === '/';
 
   const { data: apiServices = [] } = useGetServicesQuery();
-  const services = apiServices.length ? apiServices : SERVICES_DATA;
-  const navServices = services.map(s => ({ label: s.title, href: `/services/${s.slug}` }));
+  const navServices = apiServices.map(s => ({ label: s.title, href: `/services/${s.slug}` }));
 
   const NAV_ITEMS: NavItem[] = [
     { label: "Home", href: "/" },
@@ -112,23 +110,39 @@ export function Navbar() {
           <ul className="hidden md:flex items-center gap-6" role="list">
             {NAV_ITEMS.map((item) =>
               item.children ? (
-                <li key={item.label} className="relative">
-                  <button
-                    type="button"
-                    aria-haspopup="true"
-                    aria-expanded={dropdownKey === item.label}
-                    onClick={() => setDropdownKey((k) => (k === item.label ? null : item.label))}
-                    className="inline-flex items-center gap-1 text-base font-bold text-white hover:text-accent-300 transition-colors duration-150"
-                  >
-                    {item.label}
+                <li
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => { if (item.label === 'Services') setDropdownKey(item.label); }}
+                  onMouseLeave={() => { if (item.label === 'Services') setDropdownKey(null); }}
+                >
+                  <div className="inline-flex items-center gap-1">
+                    {item.label === 'Services' ? (
+                      <NavLink to={item.href} className={activeLinkClass}>{item.label}</NavLink>
+                    ) : (
+                      <button
+                        type="button"
+                        aria-haspopup="true"
+                        aria-expanded={dropdownKey === item.label}
+                        onClick={() => setDropdownKey((k) => (k === item.label ? null : item.label))}
+                        className="inline-flex items-center gap-1 text-base font-bold text-white hover:text-accent-300 transition-colors duration-150"
+                      >{item.label}</button>
+                    )}
+                    <button
+                      type="button"
+                      aria-label={`Toggle ${item.label} menu`}
+                      aria-haspopup="true"
+                      aria-expanded={dropdownKey === item.label}
+                      onClick={() => setDropdownKey((k) => (k === item.label ? null : item.label))}
+                      className="inline-flex items-center text-white hover:text-accent-300"
+                    >
                     <svg aria-hidden="true" className={['w-3.5 h-3.5 transition-transform duration-200', dropdownKey === item.label ? 'rotate-180' : ''].join(' ')} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M4 6l4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                  </button>
+                    </button>
+                  </div>
                   {dropdownKey === item.label && (
-                    <ul role="menu" className="absolute top-full left-0 mt-2 w-60 rounded-xl bg-primary-800 border border-primary-700 shadow-xl overflow-hidden py-1 z-50"
-                        onMouseEnter={() => setDropdownKey(item.label)}
-                        onMouseLeave={() => setDropdownKey(null)}>
+                    <ul role="menu" className="absolute top-full left-0 w-60 rounded-xl bg-primary-800 border border-primary-700 shadow-xl overflow-hidden py-1 z-50">
                       {item.children!.map((child) => (
                         <li key={child.href} role="none">
                           <NavLink to={child.href} role="menuitem" className={({ isActive }) => ['block px-4 py-2.5 text-sm transition-colors duration-100', isActive ? 'bg-primary-700 text-primary-300 font-medium' : 'text-secondary-100 hover:bg-primary-700/60 hover:text-secondary-100'].join(' ')}>
@@ -219,16 +233,24 @@ export function Navbar() {
             {NAV_ITEMS.map((item) =>
               item.children ? (
                 <li key={item.label}>
-                  <button
+                  <div className="flex items-center gap-1">
+                    {item.label === 'Services' ? (
+                      <NavLink to={item.href} className={({ isActive }) => ['flex-1 px-3 py-3 text-sm font-medium rounded-lg transition-colors duration-150', isActive ? 'bg-primary-700 text-primary-300' : 'text-secondary-300 hover:bg-primary-800 hover:text-secondary-100'].join(' ')}>{item.label}</NavLink>
+                    ) : (
+                      <button type="button" onClick={() => setDropdownKey((k) => (k === item.label ? null : item.label))} className="flex-1 text-left px-3 py-3 text-sm font-medium text-secondary-300 hover:bg-primary-800 hover:text-secondary-100 transition-colors duration-150 rounded-lg">{item.label}</button>
+                    )}
+                    <button
                     type="button"
+                    aria-label={`Toggle ${item.label} menu`}
+                    aria-expanded={dropdownKey === item.label}
                     onClick={() => setDropdownKey((k) => (k === item.label ? null : item.label))}
-                    className="w-full flex items-center justify-between px-3 py-3 text-sm font-medium text-secondary-300 hover:bg-primary-800 hover:text-secondary-100 transition-colors duration-150 rounded-lg"
-                  >
-                    {item.label}
+                    className="px-3 py-3 text-secondary-300 hover:bg-primary-800 hover:text-secondary-100 transition-colors duration-150 rounded-lg"
+                    >
                     <svg aria-hidden="true" className={['w-4 h-4 transition-transform duration-200', dropdownKey === item.label ? 'rotate-180' : ''].join(' ')} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M4 6l4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                  </button>
+                    </button>
+                  </div>
                   {dropdownKey === item.label && (
                     <ul className="mt-1 ml-3 border-l border-primary-700 pl-3 flex flex-col gap-0.5">
                       {item.children!.map((child) => (

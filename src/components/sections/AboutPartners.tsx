@@ -17,17 +17,17 @@ export function AboutPartners({ partners: items }: { partners?: any[] }) {
           </p>
         </div>
 
-        <div className="scroll-container" data-reveal>
-          <div className="scroll-content">
-            {[...items, ...items].map((p, i) => (
+        <div className="overflow-x-auto pb-4 scroll-smooth" data-reveal>
+          <div className="flex w-max min-w-full justify-center gap-8">
+            {items.map((p) => (
               <div
-                key={`${p.name}-${i}`}
-                className="shrink-0 flex items-center justify-center p-3 rounded-2xl border border-secondary-200 bg-secondary-50 hover:border-accent-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 min-w-[180px]"
+                key={p.id ?? p.name}
+                className="flex min-w-[180px] shrink-0 items-center justify-center rounded-2xl border border-secondary-200 bg-secondary-50 p-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-300 hover:shadow-md"
               >
                 <img
                   src={p.logo}
                   alt={p.name}
-                  className="max-h-20 max-w-full object-contain hover:grayscale-0 transition-all duration-300"
+                  className="max-h-20 max-w-full object-contain transition-all duration-300 hover:grayscale-0"
                 />
               </div>
             ))}
