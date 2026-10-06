@@ -58,7 +58,7 @@ export function Stats({ stats: items }: { stats?: any[] }) {
     );
     observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [items?.length]);
 
   if (!items?.length) return null;
 
