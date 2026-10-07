@@ -29,7 +29,10 @@ export function ImageUpload({ label, value, onChange, className = '' }: ImageUpl
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? 'Upload failed');
-      onChange(`${API_ORIGIN}${data.url}`);
+      const uploadedUrl = String(data.url ?? '');
+      if (!uploadedUrl) throw new Error('Upload succeeded but returned no image URL');
+      const isAbsoluteUrl = /^(https?:\/\/|data:)/i.test(uploadedUrl);
+      onChange(isAbsoluteUrl ? uploadedUrl : `${API_ORIGIN}${uploadedUrl}`);
     } catch (e: any) {
       setError(e.message ?? 'Upload failed');
     } finally {
