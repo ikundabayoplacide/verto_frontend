@@ -100,8 +100,7 @@ export default function SettingsPage() {
           </div>
 
           <p className="mt-4 text-xs text-secondary-400 leading-relaxed">
-            These settings are used when the server cannot write to the local <code className="text-accent-600 bg-accent-50 px-1 rounded">uploads/</code> directory (e.g. serverless deployment).
-            If Cloudinary is not configured, images will be stored as base64 in the database.
+            Uploads use Cloudinary when configured, then the backend <code className="text-accent-600 bg-accent-50 px-1 rounded">uploads/</code> directory. If local storage is unavailable, the image is saved as base64 in the database. Set <code className="text-accent-600 bg-accent-50 px-1 rounded">UPLOADS_DIR</code> to choose a different directory.
           </p>
         </div>
       )}
