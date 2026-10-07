@@ -8,6 +8,7 @@ import { Spinner } from '../components/ui/Spinner';
 /* ─── types ─────────────────────────────────────────────────────────────────── */
 interface TeamMember {
   id?: number;
+  category?: 'Board of Governance' | 'Management Team';
   name: string;
   role: string;
   qualification?: string;
@@ -185,14 +186,21 @@ export default function OurTeamPage() {
           {isLoading ? (
             <div className="flex justify-center py-24"><Spinner size="lg" /></div>
           ) : members.length > 0 ? (
-            /*
-             * Two-column grid on md+, matching the reference screenshot:
-             * each column has its own vertical list of member rows
-             */
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16">
-              {(members as TeamMember[]).map((m, i) => (
-                <MemberCard key={m.id ?? m.name + i} member={m} index={i} />
-              ))}
+            <div className="space-y-14">
+              {(['Board of Governance', 'Management Team'] as const).map((category) => {
+                const groupMembers = (members as TeamMember[]).filter((member) => member.category === category);
+                if (!groupMembers.length) return null;
+                return (
+                  <section key={category} aria-labelledby={`team-${category.replaceAll(' ', '-').toLowerCase()}`}>
+                    <h3 id={`team-${category.replaceAll(' ', '-').toLowerCase()}`} className="text-xl font-black text-primary-900 uppercase tracking-tight mb-4">{category}</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16">
+                      {groupMembers.map((member, i) => (
+                        <MemberCard key={member.id ?? member.name + i} member={member} index={i} />
+                      ))}
+                    </div>
+                  </section>
+                );
+              })}
             </div>
           ) : (
             <p className="text-secondary-400 text-center py-20">

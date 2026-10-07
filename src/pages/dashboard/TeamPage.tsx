@@ -19,7 +19,8 @@ import { Table } from '../../components/ui/Table';
 import type { TableColumn } from '../../types';
 
 type Row = Record<string, unknown>;
-const EMPTY = { name: '', role: '', qualification: '', bio: '', img: '', linkedin: '', order: 0 };
+const CATEGORIES = ['Board of Governance', 'Management Team'] as const;
+const EMPTY = { name: '', role: '', category: '' as (typeof CATEGORIES)[number] | '', qualification: '', bio: '', img: '', linkedin: '', order: 0 };
 
 function initials(name: string) { return name.split(' ').map((w) => w[0]).slice(0, 2).join('').toUpperCase(); }
 
@@ -35,9 +36,10 @@ export default function TeamPage() {
   const [form, setForm]     = useState(EMPTY);
 
   const openCreate = () => { setEditing(null); setForm(EMPTY); setOpen(true); };
-  const openEdit   = (r: any) => { setEditing(r); setForm({ name: r.name, role: r.role, qualification: r.qualification ?? '', bio: Array.isArray(r.bio) ? r.bio.join('\n\n') : (r.bio ?? ''), img: r.img ?? '', linkedin: r.linkedin ?? '', order: r.order ?? 0 }); setOpen(true); };
+  const openEdit   = (r: any) => { setEditing(r); setForm({ name: r.name, role: r.role, category: r.category ?? '', qualification: r.qualification ?? '', bio: Array.isArray(r.bio) ? r.bio.join('\n\n') : (r.bio ?? ''), img: r.img ?? '', linkedin: r.linkedin ?? '', order: r.order ?? 0 }); setOpen(true); };
 
   const handleSave = async () => {
+    if (!form.category) return;
     const body = { ...form, bio: form.bio ? form.bio.split('\n\n').filter(Boolean) : [] };
     if (editing) await update({ id: editing.id, body }).unwrap();
     else await create(body).unwrap();
@@ -59,6 +61,7 @@ export default function TeamPage() {
     },
     { key: 'qualification', header: 'Qualification', render: (r) => <span className="text-xs text-secondary-500">{String(r.qualification ?? '—')}</span> },
     { key: 'bio', header: 'Bio', render: (r) => <span className="text-xs text-secondary-500 line-clamp-2 max-w-[200px]">{Array.isArray(r.bio) ? r.bio.join(' ') : String(r.bio ?? '—')}</span> },
+    { key: 'category', header: 'Team', render: (r) => <span className="text-xs text-secondary-500">{String(r.category ?? 'Unassigned')}</span> },
     { key: 'order',  header: 'Order',  render: (r) => <span className="text-xs text-secondary-400">{String(r.order ?? 0)}</span> },
     { key: 'active', header: 'Status', render: (r) => <Badge label={r.active ? 'Active' : 'Inactive'} variant={r.active ? 'success' : 'error'} dot size="sm" /> },
     {
@@ -91,6 +94,13 @@ export default function TeamPage() {
         <div className="grid grid-cols-2 gap-4">
           <Input label="Name"          value={form.name}          onChange={(e) => setForm({ ...form, name: e.target.value })}          fullWidth />
           <Input label="Role / Title"  value={form.role}          onChange={(e) => setForm({ ...form, role: e.target.value })}          fullWidth />
+          <div>
+            <label htmlFor="team-category" className="block text-xs font-medium text-secondary-600 mb-1">Team</label>
+            <select id="team-category" required value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value as (typeof CATEGORIES)[number] | '' })} className="w-full rounded-lg border border-secondary-200 bg-white px-3 py-2 text-sm text-secondary-800 focus:outline-none focus:ring-2 focus:ring-accent-500/40">
+              <option value="" disabled>Select a team</option>
+              {CATEGORIES.map((category) => <option key={category} value={category}>{category}</option>)}
+            </select>
+          </div>
           <Input label="Qualification" value={form.qualification} onChange={(e) => setForm({ ...form, qualification: e.target.value })} fullWidth />
           <div className="col-span-2">
             <label className="block text-xs font-medium text-secondary-600 mb-1">Bio (separate paragraphs with blank lines)</label>

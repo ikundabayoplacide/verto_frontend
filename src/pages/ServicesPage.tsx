@@ -43,31 +43,34 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
     <div
       id={service.slug}
-      className="group flex flex-col rounded-2xl overflow-hidden border border-secondary-200 hover:border-accent-400 hover:shadow-lg hover:shadow-primary-900/10 transition-all duration-300 bg-white"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-secondary-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-accent-400 hover:shadow-xl hover:shadow-primary-900/10 sm:flex-row"
     >
-      <div className="relative overflow-hidden aspect-[16/9]">
-        <img src={service.img} alt={service.title} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-900/60 via-transparent to-transparent" />
-        <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-accent-500 flex items-center justify-center text-white text-xs font-black">
+      <div className="relative h-52 overflow-hidden bg-primary-900 sm:h-auto sm:min-h-[240px] sm:w-[38%]">
+        <img src={service.img} alt="" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-950/75 via-primary-950/10 to-transparent sm:bg-gradient-to-r sm:from-transparent sm:via-transparent sm:to-primary-950/10" />
+        <span className="absolute left-5 top-5 rounded-full border border-white/30 bg-primary-950/40 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-white backdrop-blur-sm">
           {String(index + 1).padStart(2, '0')}
-        </div>
+        </span>
       </div>
-      <div className="flex flex-col flex-1 p-5">
-        <h2 className="text-base font-black text-primary-900 uppercase tracking-tight leading-tight mb-2">{service.title}</h2>
-        <p className="text-secondary-500 text-sm leading-relaxed mb-4 flex-1">{service.short}</p>
-        <ul className="grid grid-cols-2 gap-1.5 mb-4">
-          {service.highlights.map((h) => (
-            <li key={h} className="flex items-center gap-1.5 text-xs text-secondary-600">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent-500 shrink-0" />
+      <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
+        <div className="mb-3 flex items-start justify-between gap-3">
+          <h2 className="text-lg font-black uppercase leading-tight tracking-tight text-primary-900 sm:text-xl">{service.title}</h2>
+          <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent-500" aria-hidden="true" />
+        </div>
+        <p className="line-clamp-3 text-sm leading-6 text-secondary-600">{service.short}</p>
+        <ul className="mt-4 flex flex-wrap gap-2">
+          {service.highlights.slice(0, 3).map((h) => (
+            <li key={h} className="rounded-full bg-primary-50 px-2.5 py-1 text-[11px] font-semibold leading-4 text-primary-700">
               {h}
             </li>
           ))}
         </ul>
         <Link
           to={`/services/${service.slug}`}
-          className="self-start inline-flex items-center gap-2 rounded-full bg-accent-500 hover:bg-accent-400 text-white px-4 py-2 font-bold text-xs uppercase tracking-widest transition"
+          className="mt-5 inline-flex w-fit items-center gap-2 text-xs font-black uppercase tracking-[0.15em] text-primary-900 transition-colors group-hover:text-accent-600"
         >
-          Learn More
+          Explore service
+          <span className="h-px w-6 bg-accent-500 transition-all group-hover:w-10" aria-hidden="true" />
           <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
@@ -102,7 +105,7 @@ function ServiceDetail({ service, services }: { service: Service; services: Serv
       </section>
 
       <section className="py-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:px-10">
+        <div className="mx-auto max-w-7xl space-y-12 px-6 lg:px-10">
           <article>
             <p className="mb-3 text-xs font-black uppercase tracking-[0.2em] text-accent-600">How we help</p>
             <h2 className="mb-8 text-3xl font-black uppercase tracking-tight text-primary-900 md:text-4xl">Strategy built around your goals</h2>
@@ -110,19 +113,25 @@ function ServiceDetail({ service, services }: { service: Service; services: Serv
               {service.description.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
             </div>
           </article>
-          {service.highlights?.length > 0 && <aside className="h-fit rounded-3xl border border-secondary-200 bg-primary-50 p-7 md:p-8">
-            <span className="mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent-500 text-xl font-black text-white">V</span>
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-accent-600">What we deliver</p>
-            <h2 className="mt-2 text-2xl font-black text-primary-900">Key capabilities</h2>
-            <ul className="mt-6 space-y-4">
+          {service.highlights?.length > 0 && <aside className="rounded-3xl border border-secondary-200 bg-primary-50 p-7 md:p-8">
+            <div className="flex items-center gap-4">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-accent-500 text-xl font-black text-white">V</span>
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-accent-600">What we deliver</p>
+                <h2 className="mt-1 text-2xl font-black text-primary-900">Key capabilities</h2>
+              </div>
+            </div>
+            <ul className="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
               {service.highlights.map((highlight, index) => (
-                <li key={highlight} className="flex gap-3 text-sm font-medium leading-relaxed text-secondary-700">
+                <li key={highlight} className="flex items-start gap-2 text-sm font-medium leading-relaxed text-secondary-700">
                   <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-[10px] font-black text-accent-600">{String(index + 1).padStart(2, '0')}</span>
                   {highlight}
                 </li>
               ))}
             </ul>
-            <Link to="/contact" className="mt-8 inline-flex w-full items-center justify-center rounded-xl bg-primary-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-800">Discuss your needs</Link>
+            <div className="mt-8 flex justify-end">
+              <Link to="/contact" className="inline-flex w-full items-center justify-center rounded-xl bg-primary-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-800 sm:w-auto">Discuss your needs</Link>
+            </div>
           </aside>}
         </div>
       </section>
@@ -231,10 +240,19 @@ export default function ServicesPage() {
         <>
           <ServicesHero />
           {data.length > 0 && <QuickNav services={data} />}
-          <section className="py-10 bg-white">
+          <section className="bg-secondary-50 py-16 md:py-20">
             {data.length > 0 ? (
-              <div className="max-w-7xl mx-auto px-6 lg:px-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {data.map((service, i) => <ServiceCard key={service.slug} service={service} index={i} />)}
+              <div className="mx-auto max-w-7xl px-6 lg:px-10">
+                <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between" data-reveal>
+                  <div className="max-w-2xl">
+                    <p className="mb-3 text-xs font-black uppercase tracking-[0.2em] text-accent-600">Expertise for lasting growth</p>
+                    <h2 className="text-3xl font-black uppercase leading-tight tracking-tight text-primary-900 md:text-4xl">Advice that moves your business forward</h2>
+                  </div>
+                  <p className="text-sm font-semibold text-secondary-500">{data.length} tailored services</p>
+                </div>
+                <div className="grid gap-5 lg:grid-cols-2">
+                  {data.map((service, i) => <ServiceCard key={service.slug} service={service} index={i} />)}
+                </div>
               </div>
             ) : (
               <p className="mx-auto max-w-7xl px-6 py-12 text-center text-secondary-500 lg:px-10">No services are available right now.</p>

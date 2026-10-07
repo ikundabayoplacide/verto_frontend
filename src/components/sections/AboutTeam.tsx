@@ -3,6 +3,8 @@ import { Modal } from '../ui/Modal';
 import { FiUser } from 'react-icons/fi';
 
 interface TeamMember {
+  id?: string | number;
+  category?: 'Board of Governance' | 'Management Team';
   name: string;
   role: string;
   qualification: string;
@@ -93,6 +95,7 @@ function MemberCard({ member, index }: { member: TeamMember; index: number }) {
 
 export function AboutTeam({ team: members }: { team?: any[] }) {
   if (!members?.length) return null;
+  const groups = ['Board of Governance', 'Management Team'] as const;
   return (
     <section className="py-8 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -105,7 +108,7 @@ export function AboutTeam({ team: members }: { team?: any[] }) {
               <span className="text-xs font-bold text-accent-600 uppercase tracking-[0.2em]">The People</span>
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-primary-900 uppercase tracking-tight leading-[0.95]">
-              Meet Our <span className="text-accent-500">Team</span>
+              Meet Our <span className="text-accent-500">Teams</span>
             </h2>
           </div>
           <p className="text-secondary-500 leading-relaxed">
@@ -113,15 +116,24 @@ export function AboutTeam({ team: members }: { team?: any[] }) {
           </p>
         </div>
 
-        <div className="scroll-container mask-edges">
-          <div className="scroll-content">
-            {[...members, ...members].map((member, i) => (
-              <div key={`${member.name}-${i}`} className="shrink-0 w-[260px] sm:w-[280px]">
-                <MemberCard member={member} index={i % members.length} />
+        {groups.map((category) => {
+          const groupMembers = members.filter((member) => member.category === category);
+          if (!groupMembers.length) return null;
+          return (
+            <div key={category} className="mb-14">
+              <h3 className="text-2xl font-black text-primary-900 uppercase tracking-tight mb-6">{category}</h3>
+              <div className="scroll-container mask-edges">
+                <div className="scroll-content">
+                  {[...groupMembers, ...groupMembers].map((member, i) => (
+                    <div key={`${member.id ?? member.name}-${i}`} className="shrink-0 w-[260px] sm:w-[280px]">
+                      <MemberCard member={member} index={i % groupMembers.length} />
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          );
+        })}
 
       </div>
     </section>
