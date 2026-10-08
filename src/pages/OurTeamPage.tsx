@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { FiArrowRight, FiLinkedin, FiMinus, FiPlus, FiUser } from 'react-icons/fi';
+import { useEffect, useRef, useState } from 'react';
+import { FiArrowRight, FiLinkedin, FiPlus, FiUser, FiX } from 'react-icons/fi';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { useGetTeamQuery } from '../app/api';
 import { PageLayout } from '../components/layout/PageLayout';
@@ -25,9 +26,27 @@ function bioArray(bio?: string | string[]): string[] {
 
 /* ─── MemberCard ─────────────────────────────────────────────────────────────── */
 function MemberCard({ member, index }: { member: TeamMember; index: number }) {
-  const [expanded, setExpanded] = useState(false);
+  const [isBioOpen, setIsBioOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const photo = member.img || member.image || '';
   const paras = bioArray(member.bio);
+
+  useEffect(() => {
+    if (!isBioOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsBioOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isBioOpen]);
 
   return (
     <div
@@ -68,15 +87,15 @@ function MemberCard({ member, index }: { member: TeamMember; index: number }) {
             {paras.length > 0 && (
               <button
                 type="button"
-                onClick={() => setExpanded((v) => !v)}
-                aria-label={expanded ? 'Collapse bio' : 'Expand bio'}
-                aria-expanded={expanded}
-                className="w-8 h-8 rounded-full border-2 border-accent-500 flex items-center justify-center text-accent-600 hover:bg-accent-50 transition-colors shrink-0"
+                ref={triggerRef}
+                onClick={() => setIsBioOpen(true)}
+                aria-label={`View details for ${member.name}`}
+                className="group relative w-8 h-8 rounded-full border-2 border-accent-500 flex items-center justify-center text-accent-600 hover:bg-accent-50 transition-colors shrink-0"
               >
-                {expanded
-                  ? <FiMinus size={14} strokeWidth={2.5} />
-                  : <FiPlus  size={14} strokeWidth={2.5} />
-                }
+                <FiPlus size={14} strokeWidth={2.5} />
+                <span aria-hidden="true" className="pointer-events-none absolute left-full top-1/2 z-20 ml-2 -translate-y-1/2 whitespace-nowrap rounded bg-primary-900 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                  View more
+                </span>
               </button>
             )}
 
@@ -97,14 +116,39 @@ function MemberCard({ member, index }: { member: TeamMember; index: number }) {
       </div>
 
       {/* ── Expanded bio ── */}
-      {expanded && paras.length > 0 && (
-        <div className="pb-6 pl-38 sm:pl-40 pr-4">
-          <div className="space-y-2">
-            {paras.map((p, i) => (
-              <p key={i} className="text-sm text-secondary-600 leading-relaxed">{p}</p>
-            ))}
-          </div>
-        </div>
+      {isBioOpen && paras.length > 0 && createPortal(
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-primary-950/80 p-4 backdrop-blur-sm" onMouseDown={(event) => {
+          if (event.target === event.currentTarget) setIsBioOpen(false);
+        }}>
+          <section role="dialog" aria-modal="true" aria-labelledby={`team-bio-title-${member.id ?? index}`} className="relative w-full max-w-5xl max-h-[88vh] overflow-y-auto rounded-xl bg-white shadow-2xl">
+            <button type="button" onClick={() => {
+              setIsBioOpen(false);
+              triggerRef.current?.focus();
+            }} aria-label="Close team member details" className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-accent-400 sm:right-6 sm:top-6">
+              <FiX size={20} />
+            </button>
+            <header className="bg-primary-900 px-6 py-8 text-white sm:px-10 sm:py-10">
+              <div className="flex items-center gap-5 pr-10 sm:gap-7">
+                <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-accent-400 bg-primary-800 sm:h-24 sm:w-24">
+                  {photo ? <img src={photo} alt="" className="h-full w-full object-cover object-top" /> : <div className="flex h-full w-full items-center justify-center"><FiUser className="h-9 w-9 text-primary-300" /></div>}
+                </div>
+                <div className="min-w-0">
+                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-accent-400">{member.category ?? 'Team member'}</p>
+                  <h2 id={`team-bio-title-${member.id ?? index}`} className="text-2xl font-black leading-tight sm:text-3xl">{member.name}</h2>
+                  <p className="mt-2 text-sm leading-snug text-primary-200">{member.role}</p>
+                </div>
+              </div>
+            </header>
+            <div className="px-6 py-7 sm:px-10 sm:py-9">
+              {member.qualification && <p className="mb-5 border-l-2 border-accent-500 pl-4 text-sm leading-relaxed text-secondary-500">{member.qualification}</p>}
+              <div className="space-y-4">
+                {paras.map((p, i) => <p key={i} className="text-sm leading-7 text-secondary-600">{p}</p>)}
+              </div>
+              {member.linkedin && <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center gap-2 rounded border border-primary-200 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-primary-800 transition-colors hover:border-primary-900 hover:bg-primary-900 hover:text-white"><FiLinkedin size={15} /> LinkedIn profile</a>}
+            </div>
+          </section>
+        </div>,
+        document.body
       )}
 
       {/* ── Green bottom border line ── */}
